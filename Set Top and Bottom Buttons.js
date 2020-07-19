@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons for AdGuard Pro (Beta)
 // @description Set Top and Bottom buttons on browser (Beta)
-// @version 1.06b2
+// @version 1.06b3
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -148,16 +148,17 @@ function fncCreateButtonElement() {
 			varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
 			// if scroll down
 			varDownButton.style.display = (varScrollHeight - varClientHeight - varClientTop - varScrollTop > 0 )  ? "" : "none";
-			
-			if (varClickFlag < 0) {
-				varUpButton.style.display = "none";
-				varClickFlag = 0;
-			} else if (varClickFlag > 0) {
-				varDownButton.style.display = "none";
-				varClickFlag = 0;
-			}
 		}; // end of function
 		
+		// if click
+		if (varClickFlag < 0) {
+			varUpButton.style.display = "none";
+			varClickFlag = 0;
+		} else if (varClickFlag > 0) {
+			varDownButton.style.display = "none";
+			varClickFlag = 0;
+		} // end if
+
 	} // end if
 } // end of function
 
