@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on browser (Beta) 
-// @version 1.04b6
+// @version 1.05b7
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -17,7 +17,7 @@ if (window.self!=window.top) {return}
 function fncCreateElement(varNumber) { return document.createElement(varNumber); } // end of function
 
 function fncDocumentHeight() {
-     if ('scrollingElement' in document) {
+/*      if ('scrollingElement' in document) {
         return document.scrollingElement;
     } else if (navigator.userAgent.indexOf('webkit') != -1) {
         return document.body;
@@ -26,8 +26,8 @@ function fncDocumentHeight() {
     } else {
         return document.body;
     } // end if
- 
-/* return document.scrollingElement;
+ */ 
+ return document.body;
  */}  // end of function
 
 // add style
