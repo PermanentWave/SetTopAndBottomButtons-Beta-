@@ -27,7 +27,7 @@ function fncDocumentHeight() {
         return document.body;
     } // end if
  */
-return document.documentElement;
+return document.scrollingElement;
 }  // end of function
 
 // add style
