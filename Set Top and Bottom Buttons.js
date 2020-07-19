@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons for AdGuard Pro (Beta)
 // @description Set Top and Bottom buttons on browser (Beta) 
-// @version 1.05b10
+// @version 1.05b11
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -126,10 +126,10 @@ function fncCreateButtonElement() {
 		
 		// add event click
 		varUpButton.addEventListener('click', fncMoveUp, false);
-		varUpButton.addEventListener('mouseup', function(){clearTimeout(varUpTimer);}, false);
+		varUpButton.addEventListener('click', function(){clearTimeout(varUpTimer);}, false);
 		
 		varDownButton.addEventListener('click', fncMoveDown, false);
-        varDownButton.addEventListener('mouseup', function(){clearTimeout(varDownTimer);}, false);
+        varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
 
 
 		// add event scroll
