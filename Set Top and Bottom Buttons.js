@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons for AdGuard Pro (Beta)
 // @description Set Top and Bottom buttons on browser (Beta)
-// @version 1.06b1
+// @version 1.06b2
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -41,7 +41,7 @@ function fncAddStyle(varCSS) {
 } // end of function
 
 // figure out if this is moz || IE because they use documentElement
-var	varHtmlElement = fncDocumentHeight();
+var varHtmlElement = fncDocumentHeight();
 // timer
 var varUpTimer;
 var varDownTimer;
@@ -77,7 +77,7 @@ function fncGetScroll(varScrolledStep) {
 // add css
 function fncShareCSS(){ 
 	// variables
-	var	varString='';
+	var varString='';
 	var varImgUp;
 	var varImgDown;
 	
@@ -102,6 +102,7 @@ function fncCreateButtonElement() {
 	var varScrollTop;
 	var varDocumentHeight = fncDocumentHeight();
 	var varHeight = fncGetScroll('Height');
+	var varClickFlag = 0;
 	// exit	var
 	if(!varHeight) { return; } // end if
 	
@@ -131,14 +132,14 @@ function fncCreateButtonElement() {
 		// add event click
 		varUpButton.addEventListener('click', fncMoveUp, false);
 		varUpButton.addEventListener('click', function(){clearTimeout(varUpTimer);}, false);
-		varUpButton.addEventListener('click', function(){varUpButton.style.display = "none";}, false);
+		varUpButton.addEventListener('click', function(){varClickFlag = -1;}, false);
 		
 		varDownButton.addEventListener('click', fncMoveDown, false);
 		varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
-		varDownButton.addEventListener('click', function(){varDownButton.style.display = "none";}, false);
+		varDownButton.addEventListener('click', function(){varClickFlag = 1;}, false);
 		
 		window.onscroll = function() { 
-			var	varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
+			var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
 			var varScrollHeight = varDocumentHeight.scrollHeight;
 			var varClientHeight = varDocumentHeight.clientHeight;
 			var varClientTop = varDocumentHeight.clientTop;
@@ -147,6 +148,14 @@ function fncCreateButtonElement() {
 			varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
 			// if scroll down
 			varDownButton.style.display = (varScrollHeight - varClientHeight - varClientTop - varScrollTop > 0 )  ? "" : "none";
+			
+			if (varClickFlag < 0) {
+				varUpButton.style.display = "none";
+				varClickFlag = 0;
+			} else if (varClickFlag > 0) {
+				varDownButton.style.display = "none";
+				varClickFlag = 0;
+			}
 		}; // end of function
 		
 	} // end if
