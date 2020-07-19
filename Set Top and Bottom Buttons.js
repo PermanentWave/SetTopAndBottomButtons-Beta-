@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons for AdGuard Pro (Beta)
 // @description Set Top and Bottom buttons on browser (Beta) 
-// @version 1.05b18
+// @version 1.05b19
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -95,7 +95,7 @@ function fncShareCSS(){
 function fncCreateButtonElement() { 
 	// get scroll
 	var varUpButton, varDownButton, 
-		varScrolled,
+		varScrollTop,
 		varDocumentHeight = fncDocumentHeight(),
 		varHeight = fncGetScroll('Height');
 	// exit
@@ -120,9 +120,9 @@ function fncCreateButtonElement() {
 		document.body.appendChild(varDownButton);
 		
 		// scroll
-		varScrolled = window.pageYOffset || varDocumentHeight.scrollTop;
+		varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
 		// if scroll 
-		varUpButton.style.display = (varScrolled > 0)  ? "" : "none";
+		varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
 		
 		// add event click
 		varUpButton.addEventListener('click', fncMoveUp, false);
@@ -131,29 +131,17 @@ function fncCreateButtonElement() {
 		varDownButton.addEventListener('click', fncMoveDown, false);
 		varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
 
-/*
-		// add event scroll
-		window.onscroll = function() { 
-			var varScrolled = window.pageYOffset || varDocumentHeight.scrollTop, 
-				varDiffHeight = varDocumentHeight.scrollHeight - varDocumentHeight.clientHeight;
-			// if scroll up
-			varUpButton.style.display = (varScrolled > 0)  ? "" : "none";
-			// if scroll down
-			varDownButton.style.display = (varDiffHeight - varScrolled > 0 )  ? "" : "none";
+        window.onscroll = function() { 
+            var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop, 
+                varScrollHeight = document.documentElement.scrollHeight,
+                varClientHeight = varDocumentHeight.clientHeight,
+                varClientTop = varDocumentHeight.clientTop;
+
+            // if scroll up
+            varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
+            // if scroll down
+            varDownButton.style.display = (varScrollHeight - varClientHeight - varClientTop - varScrollTop <= 0 )  ? "" : "none";
         }; // end of function
-*/
-
-window.onscroll = function() { 
-    var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop, 
-        varScrollHeight = document.documentElement.scrollHeight,
-        varClientHeight = varDocumentHeight.clientHeight,
-        varClientTop = varDocumentHeight.clientTop;
-
-    // if scroll up
-    varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
-    // if scroll down
-    varDownButton.style.display = (varScrollHeight - varClientHeight - varClientTop - varScrollTop > 0 )  ? "" : "none";
-}; // end of function
 
 	} // end if
 } // end of function
