@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on browser (Beta) 
-// @version 1.04b1
+// @version 1.04b3
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -16,8 +16,8 @@ if (window.self!=window.top) {return}
 // create element
 function fncCreateElement(varNumber) { return document.createElement(varNumber); } // end of function
 
-function funcDocumentHeight() {
-    if ('scrollingElement' in document) {
+function fncDocumentHeight() {
+/*     if ('scrollingElement' in document) {
         return document.scrollingElement;
     } else if (navigator.userAgent.toLowerCase().indexOf('webkit') > -1) {
         return document.body;
@@ -26,6 +26,8 @@ function funcDocumentHeight() {
     } else {
         return document.body;
     } // end if
+ */
+return document.documentElement;
 }  // end of function
 
 // add style
@@ -40,7 +42,7 @@ function fncAddStyle(varCSS) {
 } // end of function
 
 // figure out if this is moz || IE because they use documentElement
-var varHtmlElement = funcDocumentHeight(),
+var varHtmlElement = fncDocumentHeight(),
 // timer
 varUpTimer, varDownTimer,
 // speed by
@@ -56,7 +58,7 @@ function fncMoveUp() {
 
 // move down
 function fncMoveDown() { 
-    var varDocumentHeight = funcDocumentHeight();
+    var varDocumentHeight = fncDocumentHeight();
     var varBottom = varDocumentHeight.scrollHeight - varDocumentHeight.clientHeight;
     window.scrollTo(0, varBottom*1.05);
     varDownTimer = setTimeout(fncMoveDown, varTimeOut);
@@ -95,7 +97,7 @@ function create_btn_element() {
     // get scroll
 	var varUpButton, varDownButton, 
         varScrolled,
-        varDocumentHeight = funcDocumentHeight(),
+        varDocumentHeight = fncDocumentHeight(),
 	    varHeight = get_scroll('Height');
     // exit
     if(!varHeight) { return; } // end if
