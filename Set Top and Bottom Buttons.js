@@ -56,8 +56,8 @@ function fncMoveUp() {
 
 // move down
 function fncMoveDown() { 
-    var varDocumentElement = document.documentElement;
-    var varBottom = document.documentElement.scrollHeight - document.documentElement.offsetHeight;
+    var varDocumentHeight = funcDocumentHeight();
+    var varBottom = varDocumentHeight.scrollHeight - varDocumentHeight.clientHeight;
     window.scrollTo(0, varBottom*1.05);
     varDownTimer = setTimeout(fncMoveDown, varTimeOut);
 } // end of function
