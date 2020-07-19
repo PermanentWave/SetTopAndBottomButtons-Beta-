@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons for AdGuard Pro (Beta)
 // @description Set Top and Bottom buttons on browser (Beta) 
-// @version 1.05b9
+// @version 1.05b10
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -47,7 +47,7 @@ varUpTimer, varDownTimer,
 // speed by
 varTimeOut = 0,  // edit this value
 // z-index
-varZIIndex = 1001;       // edit this value
+varZIndex = 0;       // edit this value
 
 // move up
 function fncMoveUp() { 
@@ -82,8 +82,8 @@ function fncShareCSS(){
     varImgUp = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB+SURBVDhPY1i1atV/amAGahgCMoNhaIGlS5cKAp19BoRBbLJcj2QILDJINwzoAmMgfoclIkBixkS5DI8hMJcRNgxoSBoOl6CnNZBhaVhdBjWE1MSJahjQkA4KEmYH2GUrV66cSYEhYB+AzKBtFiHkQqKiH6Ro1CDCQTWgYQQAs81DU0G/83sAAAAASUVORK5CYII=';
 	varImgDown = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPY2DAAlatWvUfH8amB6vYqEGEg2pgw4iQ7cTKM6xcuXImsYpxqQOZAQ4woIIOCgzrQAl1oEFpZBiWhitFgwx7R4SBIDXYDYGZDFRgTMAwkCHGhBMRJMxwGUa8ITCbli5dKgg08AySN8+AxIhyCboiJMPIN4Qsm6miiYioxltawvSDYogohYTUAQC80UNTOht/YwAAAABJRU5ErkJggg==';
     // button id
-    varString+='#play_btn_up { position:fixed; right:0; bottom:55%;z-index:'+varZIIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgUp+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-    varString+='#play_btn_dn { position:fixed; right:0; top:55%;   z-index:'+varZIIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgDown+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+    varString+='#play_btn_up { position:fixed; right:0; bottom:55%;z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgUp+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+    varString+='#play_btn_dn { position:fixed; right:0; top:55%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgDown+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
     // button class
     varString+='.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
     varString+='.play_btn:hover { opacity:1; }'; 
@@ -115,7 +115,7 @@ function fncCreateButtonElement() {
 		// set class
 		varUpButton.className = "play_btn";
 		varDownButton.className = "play_btn";
-        // append element
+		// append element
 		document.body.appendChild(varUpButton);
 		document.body.appendChild(varDownButton);
 		
@@ -125,11 +125,11 @@ function fncCreateButtonElement() {
 		varUpButton.style.display = (varScrolled > 0)  ? "" : "none";
 		
 		// add event click
-        varUpButton.addEventListener('click', fncMoveUp, false);
-		varUpButton.addEventListener('click', function(){clearTimeout(varUpTimer);}, false);
+		varUpButton.addEventListener('click', fncMoveUp, false);
+		varUpButton.addEventListener('mouseup', function(){clearTimeout(varUpTimer);}, false);
 		
 		varDownButton.addEventListener('click', fncMoveDown, false);
-        varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
+        varDownButton.addEventListener('mouseup', function(){clearTimeout(varDownTimer);}, false);
 
 
 		// add event scroll
