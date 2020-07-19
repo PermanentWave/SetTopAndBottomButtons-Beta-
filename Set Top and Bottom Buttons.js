@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons for AdGuard Pro (Beta)
 // @description Set Top and Bottom buttons on browser (Beta) 
-// @version 1.05b8
+// @version 1.05b9
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -16,6 +16,7 @@ if (window.self!=window.top) {return}
 // create element
 function fncCreateElement(varNumber) { return document.createElement(varNumber); } // end of function
 
+// select element
 function fncDocumentHeight() {
       if ('scrollingElement' in document) {
         return document.scrollingElement;
@@ -26,7 +27,6 @@ function fncDocumentHeight() {
     } else {
         return document.body;
     } // end if
- 
 }  // end of function
 
 // add style
@@ -64,7 +64,7 @@ function fncMoveDown() {
 } // end of function
 
 // document scroll
-function get_scroll(varScrolledStep) {
+function fncGetScroll(varScrolledStep) {
     var varDocument = document,
         varDocumentBody = varDocument.body,
         varDocumentElement = varDocument.documentElement,
@@ -74,7 +74,7 @@ function get_scroll(varScrolledStep) {
 } // end of function
 
 // add css
-function fucShareCSS(){ 
+function fncShareCSS(){ 
     // variables
     var varString='', varImgUp, varImgDown; 
 	
@@ -92,17 +92,17 @@ function fucShareCSS(){
 } // end of function
 
 // main
-function create_btn_element() { 
+function fncCreateButtonElement() { 
     // get scroll
 	var varUpButton, varDownButton, 
         varScrolled,
         varDocumentHeight = fncDocumentHeight(),
-	    varHeight = get_scroll('Height');
+	    varHeight = fncGetScroll('Height');
     // exit
     if(!varHeight) { return; } // end if
 	
 	// add css
-	fucShareCSS(); 
+	fncShareCSS(); 
 
 	// if 
 	if(varHtmlElement){ 
@@ -124,7 +124,6 @@ function create_btn_element() {
 		// if scroll 
 		varUpButton.style.display = (varScrolled > 0)  ? "" : "none";
 		
-
 		// add event click
         varUpButton.addEventListener('click', fncMoveUp, false);
 		varUpButton.addEventListener('click', function(){clearTimeout(varUpTimer);}, false);
@@ -132,7 +131,7 @@ function create_btn_element() {
 		varDownButton.addEventListener('click', fncMoveDown, false);
         varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
 
-		
+
 		// add event scroll
 		window.onscroll = function() { 
             var varScrolled = window.pageYOffset || varDocumentHeight.scrollTop, 
@@ -146,4 +145,4 @@ function create_btn_element() {
 } // end of function
 
 // run it
-create_btn_element();
+fncCreateButtonElement();
