@@ -68,22 +68,22 @@ function fncMoveDown() {
 function fncCheckHeight() {
 	var varAlert;
 
-	varAlert = "DocumentElement.clientHeight:" + document.documentElement.clientHeight + "\n"
-	varAlert = varAlert + "DocumentElement.clientTop:" + document.documentElement.clientTop + "\n"
-	varAlert = varAlert + "DocumentElement.scrollHeight:" + document.documentElement.scrollHeight + "\n"
-	varAlert = varAlert + "DocumentElement.scrollTop:" + document.documentElement.scrollTop + "\n"
+	varAlert = "DocumentElement.clientHeight:" + document.documentElement.clientHeight + "\n";
+	varAlert = varAlert + "DocumentElement.clientTop:" + document.documentElement.clientTop + "\n";
+	varAlert = varAlert + "DocumentElement.scrollHeight:" + document.documentElement.scrollHeight + "\n";
+	varAlert = varAlert + "DocumentElement.scrollTop:" + document.documentElement.scrollTop + "\n";
 
-	varAlert = varAlert + "DocumentBody.clientHeight:" + document.documentBody.clientHeight + "\n"
-	varAlert = varAlert + "DocumentBody.clientTop:" + document.documentBody.clientTop + "\n"
-	varAlert = varAlert + "DocumentBody.scrollHeight:" + document.documentBody.scrollHeight + "\n"
-	varAlert = varAlert + "DocumentBody.scrollTop:" + document.documentBody.scrollTop + "\n"
+	varAlert = varAlert + "DocumentBody.clientHeight:" + document.documentBody.clientHeight + "\n";
+	varAlert = varAlert + "DocumentBody.clientTop:" + document.documentBody.clientTop + "\n";
+	varAlert = varAlert + "DocumentBody.scrollHeight:" + document.documentBody.scrollHeight + "\n";
+	varAlert = varAlert + "DocumentBody.scrollTop:" + document.documentBody.scrollTop + "\n";
 
-	varAlert = varAlert + "ScrollElement.clientHeight:" + document.scrollElement.clientHeight + "\n"
-	varAlert = varAlert + "ScrollElement.clientTop:" + document.scrollElement.clientTop + "\n"
-	varAlert = varAlert + "ScrollElement.scrollHeight:" + document.scrollElement.scrollHeight + "\n"
-	varAlert = varAlert + "ScrollElement.scrollTop:" + document.scrollElement.scrollTop
+	varAlert = varAlert + "ScrollElement.clientHeight:" + document.scrollElement.clientHeight + "\n";
+	varAlert = varAlert + "ScrollElement.clientTop:" + document.scrollElement.clientTop + "\n";
+	varAlert = varAlert + "ScrollElement.scrollHeight:" + document.scrollElement.scrollHeight + "\n";
+	varAlert = varAlert + "ScrollElement.scrollTop:" + document.scrollElement.scrollTop;
 
-	alert(varAlert)
+	alert(varAlert);
 }
 
 // document scroll
