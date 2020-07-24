@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b7
+// @version 1.07b8
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -67,25 +67,32 @@ function fncMoveDown() {
 // Height check
 function fncCheckHeight() {
 	var varAlert;
+	var varTmp;
 
-	varAlert = "DocumentElement.clientHeight:" + document.documentElement.clientHeight + "\n";
-	varAlert = varAlert + "DocumentElement.clientTop:" + document.documentElement.clientTop + "\n";
-	varAlert = varAlert + "DocumentElement.scrollHeight:" + document.documentElement.scrollHeight + "\n";
+	varAlert = "DocumentElement.scrollHeight:" + document.documentElement.scrollHeight + "\n";
 	varAlert = varAlert + "DocumentElement.scrollTop:" + document.documentElement.scrollTop + "\n";
+	varAlert = varAlert + "DocumentElement.clientHeight:" + document.documentElement.clientHeight + "\n";
+	varAlert = varAlert + "DocumentElement.clientTop:" + document.documentElement.clientTop + "\n";
+	varTmp = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight - document.documentElement.clientTop;
+	varAlert = varAlert + "DocumentElement.scrollBottom:" + varTmp + "\n";
 
 	varAlert = varAlert + "\n";
 
-	varAlert = varAlert + "Body.clientHeight:" + document.body.clientHeight + "\n";
-	varAlert = varAlert + "Body.clientTop:" + document.body.clientTop + "\n";
 	varAlert = varAlert + "Body.scrollHeight:" + document.body.scrollHeight + "\n";
 	varAlert = varAlert + "Body.scrollTop:" + document.body.scrollTop + "\n";
+	varAlert = varAlert + "Body.clientHeight:" + document.body.clientHeight + "\n";
+	varAlert = varAlert + "Body.clientTop:" + document.body.clientTop + "\n";
+	varTmp = document.body.scrollHeight - document.body.scrollTop - document.body.clientHeight - document.body.clientTop;
+	varAlert = varAlert + "Body.scrollBottom:" + varTmp + "\n";
 
 	varAlert = varAlert + "\n";
 
-	varAlert = varAlert + "ScrollingElement.clientHeight:" + document.scrollingElement.clientHeight + "\n";
-	varAlert = varAlert + "ScrollingElement.clientTop:" + document.scrollingElement.clientTop + "\n";
 	varAlert = varAlert + "ScrollingElement.scrollHeight:" + document.scrollingElement.scrollHeight + "\n";
 	varAlert = varAlert + "ScrollingElement.scrollTop:" + document.scrollingElement.scrollTop;
+	varAlert = varAlert + "ScrollingElement.clientHeight:" + document.scrollingElement.clientHeight + "\n";
+	varAlert = varAlert + "ScrollingElement.clientTop:" + document.scrollingElement.clientTop + "\n";
+	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
+	varAlert = varAlert + "ScrollingElement.scrollBottom:" + varTmp + "\n";
 
 	alert(varAlert);
 }
@@ -115,7 +122,7 @@ function fncShareCSS(){
 	// button id
 	varString+='#play_btn_up { position:fixed; right:0; bottom:55%;z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgUp+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
 	varString+='#play_btn_dn { position:fixed; right:0; top:55%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgDown+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-	varString+='#play_btn_chk { position:fixed; right:0; top:49%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgCheck+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+	varString+='#play_btn_chk { position:fixed; right:0; top:49.1%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgCheck+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
 	// button class
 	varString+='.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 	varString+='.play_btn:hover { opacity:1; }'; 
