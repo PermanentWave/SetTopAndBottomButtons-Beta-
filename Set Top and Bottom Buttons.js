@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b4
+// @version 1.07b6
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -111,7 +111,7 @@ function fncShareCSS(){
 	// button id
 	varString+='#play_btn_up { position:fixed; right:0; bottom:55%;z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgUp+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
 	varString+='#play_btn_dn { position:fixed; right:0; top:55%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgDown+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-	varString+='#play_btn_chk { position:fixed; right:0; top:52.5%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgCheck+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+	varString+='#play_btn_chk { position:fixed; right:0; top:48%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgCheck+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
 	// button class
 	varString+='.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 	varString+='.play_btn:hover { opacity:1; }'; 
