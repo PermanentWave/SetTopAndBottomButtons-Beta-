@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b2
+// @version 1.07b3
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -168,7 +168,7 @@ function fncCreateButtonElement() {
 		varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
 		varDownButton.addEventListener('click', function(){varClickFlag = 1;}, false);
 
-		varCheckButton.addEventListener('click', fncCheckHeight, false)
+		varCheckButton.addEventListener('click', fncCheckHeight, false);
 		
 		// if scroll
 		window.onscroll = function() { 
