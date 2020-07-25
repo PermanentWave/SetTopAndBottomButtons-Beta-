@@ -68,11 +68,20 @@ function fncMoveDown() {
 
 // Height check
 function fncCheckHeight() {
-	var varAlert;
+	var varAlert = "";
 	var varTmp;
 	var varElement = fncSelectElement();
 
-	varAlert = "documentElement.scrollHeight: " + document.documentElement.scrollHeight + "\n";
+	varAlert = varAlert + "(This page) scrollHeight: " + varElement.scrollHeight + "\n";
+	varAlert = varAlert + "(This page) scrollTop: " + varElement.scrollTop + "\n";
+	varAlert = varAlert + "(This page) clientHeight: " + varElement.clientHeight + "\n";
+	varAlert = varAlert + "(This page) clientTop: " + varElement.clientTop + "\n";
+	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
+	varAlert = varAlert + "(This page) scrollBottom: " + varTmp;
+
+	varAlert = varAlert + "\n\n";
+	
+	varAlert = varAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight + "\n";
 	varAlert = varAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop + "\n";
 	varAlert = varAlert + "documentElement.clientHeight: " + document.documentElement.clientHeight + "\n";
 	varAlert = varAlert + "documentElement.clientTop: " + document.documentElement.clientTop + "\n";
@@ -97,15 +106,6 @@ function fncCheckHeight() {
 	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
 	varAlert = varAlert + "scrollingElement.scrollBottom: " + varTmp + "\n";
 
-	varAlert = varAlert + "\n";
-	
-	varAlert = varAlert + "(This page) scrollHeight: " + varElement.scrollHeight + "\n";
-	varAlert = varAlert + "(This page) scrollTop: " + varElement.scrollTop + "\n";
-	varAlert = varAlert + "(This page) clientHeight: " + varElement.clientHeight + "\n";
-	varAlert = varAlert + "(This page) clientTop: " + varElement.clientTop + "\n";
-	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
-	varAlert = varAlert + "(This page) scrollBottom: " + varTmp;
-	
 	alert(varAlert);
 }
 
