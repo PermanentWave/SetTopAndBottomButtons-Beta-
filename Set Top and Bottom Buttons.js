@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b20
+// @version 1.07b21
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -72,39 +72,39 @@ function fncCheckHeight() {
 	var varTmp;
 	var varElement = fncSelectElement();
 
-	varAlert = "documentElement.scrollHeight:" + document.documentElement.scrollHeight + "\n";
-	varAlert = varAlert + "documentElement.scrollTop:" + document.documentElement.scrollTop + "\n";
-	varAlert = varAlert + "documentElement.clientHeight:" + document.documentElement.clientHeight + "\n";
-	varAlert = varAlert + "documentElement.clientTop:" + document.documentElement.clientTop + "\n";
+	varAlert = "documentElement.scrollHeight:¥t" + document.documentElement.scrollHeight + "\n";
+	varAlert = varAlert + "documentElement.scrollTop:¥t" + document.documentElement.scrollTop + "\n";
+	varAlert = varAlert + "documentElement.clientHeight:¥t" + document.documentElement.clientHeight + "\n";
+	varAlert = varAlert + "documentElement.clientTop:¥t" + document.documentElement.clientTop + "\n";
 	varTmp = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight - document.documentElement.clientTop;
-	varAlert = varAlert + "documentElement.scrollBottom:" + varTmp + "\n";
+	varAlert = varAlert + "documentElement.scrollBottom:¥t" + varTmp + "\n";
 
 	varAlert = varAlert + "\n";
 
-	varAlert = varAlert + "body.scrollHeight:" + document.body.scrollHeight + "\n";
-	varAlert = varAlert + "body.scrollTop:" + document.body.scrollTop + "\n";
-	varAlert = varAlert + "body.clientHeight:" + document.body.clientHeight + "\n";
-	varAlert = varAlert + "body.clientTop:" + document.body.clientTop + "\n";
+	varAlert = varAlert + "body.scrollHeight:¥t" + document.body.scrollHeight + "\n";
+	varAlert = varAlert + "body.scrollTop:¥t" + document.body.scrollTop + "\n";
+	varAlert = varAlert + "body.clientHeight:¥t" + document.body.clientHeight + "\n";
+	varAlert = varAlert + "body.clientTop:¥t" + document.body.clientTop + "\n";
 	varTmp = document.body.scrollHeight - document.body.scrollTop - document.body.clientHeight - document.body.clientTop;
-	varAlert = varAlert + "body.scrollBottom:" + varTmp + "\n";
+	varAlert = varAlert + "body.scrollBottom:¥t" + varTmp + "\n";
 
 	varAlert = varAlert + "\n";
 
-	varAlert = varAlert + "scrollingElement.scrollHeight:" + document.scrollingElement.scrollHeight + "\n";
-	varAlert = varAlert + "scrollingElement.scrollTop:" + document.scrollingElement.scrollTop + "\n";
-	varAlert = varAlert + "scrollingElement.clientHeight:" + document.scrollingElement.clientHeight + "\n";
-	varAlert = varAlert + "scrollingElement.clientTop:" + document.scrollingElement.clientTop + "\n";
+	varAlert = varAlert + "scrollingElement.scrollHeight:¥t" + document.scrollingElement.scrollHeight + "\n";
+	varAlert = varAlert + "scrollingElement.scrollTop:¥t" + document.scrollingElement.scrollTop + "\n";
+	varAlert = varAlert + "scrollingElement.clientHeight:¥t" + document.scrollingElement.clientHeight + "\n";
+	varAlert = varAlert + "scrollingElement.clientTop:¥t" + document.scrollingElement.clientTop + "\n";
 	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
-	varAlert = varAlert + "scrollingElement.scrollBottom:" + varTmp + "\n";
+	varAlert = varAlert + "scrollingElement.scrollBottom:¥t" + varTmp + "\n";
 
 	varAlert = varAlert + "\n";
 	
-	varAlert = varAlert + "(This page) scrollHeight:" + varElement.scrollHeight + "\n";
-	varAlert = varAlert + "(This page) crollTop:" + varElement.scrollTop + "\n";
-	varAlert = varAlert + "(This page) clientHeight:" + varElement.clientHeight + "\n";
-	varAlert = varAlert + "(This page) clientTop:" + varElement.clientTop + "\n";
+	varAlert = varAlert + "(This page) scrollHeight:¥t" + varElement.scrollHeight + "\n";
+	varAlert = varAlert + "(This page) crollTop:¥t" + varElement.scrollTop + "\n";
+	varAlert = varAlert + "(This page) clientHeight:¥t" + varElement.clientHeight + "\n";
+	varAlert = varAlert + "(This page) clientTop:¥t" + varElement.clientTop + "\n";
 	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
-	varAlert = varAlert + "(This page) scrollBottom:" + varTmp;
+	varAlert = varAlert + "(This page) scrollBottom:¥t" + varTmp;
 
 	alert(varAlert);
 }
