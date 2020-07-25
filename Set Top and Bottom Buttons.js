@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b23
+// @version 1.07b24
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -100,7 +100,7 @@ function fncCheckHeight() {
 	varAlert = varAlert + "\n";
 	
 	varAlert = varAlert + "(This page) scrollHeight: " + varElement.scrollHeight + "\n";
-	varAlert = varAlert + "(This page) crollTop: " + varElement.scrollTop + "\n";
+	varAlert = varAlert + "(This page) scrollTop: " + varElement.scrollTop + "\n";
 	varAlert = varAlert + "(This page) clientHeight: " + varElement.clientHeight + "\n";
 	varAlert = varAlert + "(This page) clientTop: " + varElement.clientTop + "\n";
 	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
