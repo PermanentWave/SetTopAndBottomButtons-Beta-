@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b26
+// @version 1.07b27
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -81,6 +81,16 @@ function fncCheckHeight() {
 
 	varAlert = varAlert + "\n";
 	varAlert = varAlert + "\n";
+
+
+	varAlert = varAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed(2) + "\n";
+	varAlert = varAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed(2) + "\n";
+	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
+	varAlert = varAlert + "scrollingElement.scrollBottom: " + varTmp.toFixed(2) + "\n";
+	
+	varAlert = varAlert + "\n";
 	
 	varAlert = varAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop.toFixed(2) + "\n";
@@ -97,15 +107,6 @@ function fncCheckHeight() {
 	varAlert = varAlert + "body.clientTop: " + document.body.clientTop.toFixed(2) + "\n";
 	varTmp = document.body.scrollHeight - document.body.scrollTop - document.body.clientHeight - document.body.clientTop;
 	varAlert = varAlert + "body.scrollBottom: " + varTmp.toFixed(2) + "\n";
-
-	varAlert = varAlert + "\n";
-
-	varAlert = varAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
-	varAlert = varAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed(2) + "\n";
-	varAlert = varAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
-	varAlert = varAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed(2) + "\n";
-	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
-	varAlert = varAlert + "scrollingElement.scrollBottom: " + varTmp.toFixed(2) + "\n";
 
 	alert(varAlert);
 }
