@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b28
+// @version 1.07b29
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -82,7 +82,6 @@ function fncCheckHeight() {
 	varAlert = varAlert + "\n";
 	varAlert = varAlert + "\n";
 
-
 	varAlert = varAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed(2) + "\n";
 	varAlert = varAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
@@ -109,7 +108,7 @@ function fncCheckHeight() {
 	varAlert = varAlert + "body.scrollBottom: " + varTmp.toFixed(2) + "\n";
 
 	alert(varAlert);
-}
+} // end of function
 
 // document scroll
 function fncGetScroll(varScrolledStep) { 
@@ -194,7 +193,6 @@ function fncCreateButtonElement() {
 		varDownButton.addEventListener('click', function(){varClickFlag = 1;}, false);
 
 		varCheckButton.addEventListener('click', fncCheckHeight, false);
-		varCheckButton.addEventListener('click', function(){;}, false);
 		
 		// if scroll
 		window.onscroll = function() { 
