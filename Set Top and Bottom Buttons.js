@@ -79,7 +79,7 @@ function fncCheckHeight() {
 	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
 	varAlert = varAlert + "(This page) scrollBottom: " + varTmp;
 
-	varAlert = varAlert + "\n\n";
+	varAlert = varAlert + "\n \n";
 	
 	varAlert = varAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight + "\n";
 	varAlert = varAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop + "\n";
