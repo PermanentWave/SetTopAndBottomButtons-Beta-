@@ -70,6 +70,7 @@ function fncMoveDown() {
 function fncCheckHeight() {
 	var varAlert;
 	var varTmp;
+	var varElement = fncSelectElement();
 
 	varAlert = "DocumentElement.scrollHeight:" + document.documentElement.scrollHeight + "\n";
 	varAlert = varAlert + "DocumentElement.scrollTop:" + document.documentElement.scrollTop + "\n";
@@ -95,6 +96,15 @@ function fncCheckHeight() {
 	varAlert = varAlert + "ScrollingElement.clientTop:" + document.scrollingElement.clientTop + "\n";
 	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
 	varAlert = varAlert + "ScrollingElement.scrollBottom:" + varTmp + "\n";
+
+	varAlert = varAlert + "\n";
+	
+	varAlert = varAlert + "HTMLElement.scrollHeight:" + varElement.scrollHeight + "\n";
+	varAlert = varAlert + "HTMLElement.scrollTop:" + varElement.scrollTop + "\n";
+	varAlert = varAlert + "HTMLElement.clientHeight:" + varElement.clientHeight + "\n";
+	varAlert = varAlert + "HTMLElement.clientTop:" + varElement.clientTop + "\n";
+	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
+	varAlert = varAlert + "HTMLElement.scrollBottom:" + varTmp;
 
 	alert(varAlert);
 }
@@ -194,7 +204,7 @@ function fncCreateButtonElement() {
 			// if scroll up
 			varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
 			// if scroll down
-			varDownButton.style.display = ( Math.floor(varScrollBottom) > 0 )  ? "" : "none";
+			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none";
 			// if click
 			if (varClickFlag < 0) {
 				varUpButton.style.display = "none";
