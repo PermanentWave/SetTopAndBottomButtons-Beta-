@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.07b29
+// @version 1.08b1
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -15,8 +15,11 @@ var varHtmlElement = fncSelectElement();
 // timer
 var varUpTimer;
 var varDownTimer;
-// speed by
-var varTimeOut = 0; // edit this value
+var varIdleTimer;
+// up and down timeout
+var varTimeOut;
+// idle timeout
+var varIdleTimeOut = 2000; // edit this value
 // z-index
 var varZIndex = 1001; // edit this value
 // y-position (%)
@@ -179,22 +182,77 @@ function fncCreateButtonElement() {
 		document.body.appendChild(varCheckButton);
 		
 		// scroll
-		varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
-		// if scroll 
-		varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
+//		varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
+		// if scroll
+//		varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
+		
+		function fncInvisibleButtons(){
+			varUpButton.style.display = "none";
+			varDownButton.style.display = "none";
+			varCheckButton.style.display = "none";
+			return true;
+		};
+		
+		function fncVisibleButtons() {
+			varUpButton.style.display = "";
+			varDownButton.style.display = "";
+			varCheckButton.style.display = "";
+			return true;
+		};
+		
+		function fncRestartTimer() {
+			fncVisibleButtons;
+			clearTimeout(varIdleTimer);
+			varIdleTimer = setTimeout(fncInvisibleButtons, varIdleTimeOut);
+			return true;
+		};
+		
+		function fncOnScroll() {
+			var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
+			var varScrollHeight = varDocumentHeight.scrollHeight;
+			var varClientHeight = varDocumentHeight.clientHeight;
+			var varClientTop = varDocumentHeight.clientTop;
+			var varScrollBottom = varScrollHeight - varClientHeight - varClientTop - varScrollTop;
+			
+			fncRestartTimer;
+			
+			// if scroll up
+			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
+			// if scroll down
+			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
+			
+			varCheckButton.style.display = "";
+			
+			// if click
+			if (varClickFlag < 0) {
+				varUpButton.style.display = "none";
+				varClickFlag = 0;
+			} else if (varClickFlag > 0) {
+				varDownButton.style.display = "none";
+				varClickFlag = 0;
+			} // end if
+		};
+		
+		window.addEventListener('load', fncRestartTimer, false);
 		
 		// add event click
+		varUpButton.addEventListener('click', fncRestartTimer, false);
 		varUpButton.addEventListener('click', fncMoveUp, false);
 		varUpButton.addEventListener('click', function(){clearTimeout(varUpTimer);}, false);
 		varUpButton.addEventListener('click', function(){varClickFlag = -1;}, false);
 		
+		varDownButton.addEventListener('click', fncRestartTimer, false);
 		varDownButton.addEventListener('click', fncMoveDown, false);
 		varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
 		varDownButton.addEventListener('click', function(){varClickFlag = 1;}, false);
-
+		
+		varCheckButton.addEventListener('click', fncRestartTimer, false);
 		varCheckButton.addEventListener('click', fncCheckHeight, false);
 		
-		// if scroll
+		document.addEventListener('scroll', fncOnScroll, false);
+		document.addEventListener('scroll', fncRestartTimer, false);
+		
+/*		// if scroll
 		window.onscroll = function() { 
 			var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
 			var varScrollHeight = varDocumentHeight.scrollHeight;
@@ -202,10 +260,15 @@ function fncCreateButtonElement() {
 			var varClientTop = varDocumentHeight.clientTop;
 			var varScrollBottom = varScrollHeight - varClientHeight - varClientTop - varScrollTop;
 			
+			fncRestartTimer;
+			
 			// if scroll up
-			varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
+			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
 			// if scroll down
 			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
+			
+			varCheckButton.style.display = "";
+			
 			// if click
 			if (varClickFlag < 0) {
 				varUpButton.style.display = "none";
@@ -215,7 +278,7 @@ function fncCreateButtonElement() {
 				varClickFlag = 0;
 			} // end if
 		}; // end of function
-		
+		*/
 	} // end if
 } // end of function
 
