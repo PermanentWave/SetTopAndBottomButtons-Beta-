@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.08b2
+// @version 1.08b3
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -19,11 +19,13 @@ var varIdleTimer;
 // up and down timeout
 var varTimeOut;
 // idle timeout
-var varIdleTimeOut = 2000; // edit this value
+var varIdleTimeOut = 3000; // edit this value
 // z-index
 var varZIndex = 1001; // edit this value
 // y-position (%)
 var varYPosition = 55;  // edit this value
+// always appear buttons
+var varAutoHideButtons = true;
 
 // [1] skip all iframe 
 if (window.self!=window.top) {return}
@@ -71,40 +73,41 @@ function fncMoveDown() {
 	return true;
 } // end of function
 
-// Height check
+// Height check // only beta version
 function fncCheckHeight() {
 	var varAlert = "";
 	var varTmp;
 	var varElement = fncSelectElement();
 
-	varAlert = varAlert + "(This page) scrollHeight: " + varElement.scrollHeight.toFixed(2) + "\n";
-	varAlert = varAlert + "(This page) scrollTop: " + varElement.scrollTop.toFixed(2) + "\n";
-	varAlert = varAlert + "(This page) clientHeight: " + varElement.clientHeight.toFixed(2) + "\n";
-	varAlert = varAlert + "(This page) clientTop: " + varElement.clientTop.toFixed(2) + "\n";
+	// loading height
+	varAlert = varAlert + "(Loading) scrollHeight: " + varElement.scrollHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "(Loading) scrollTop: " + varElement.scrollTop.toFixed(2) + "\n";
+	varAlert = varAlert + "(Loading) clientHeight: " + varElement.clientHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "(Loading) clientTop: " + varElement.clientTop.toFixed(2) + "\n";
 	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
-	varAlert = varAlert + "(This page) scrollBottom: " + varTmp.toFixed(2) + "\n";
-
+	varAlert = varAlert + "(Loading) scrollBottom: " + varTmp.toFixed(2) + "\n";
 	varAlert = varAlert + "\n";
 	varAlert = varAlert + "\n";
 
+	// scrollingElement height
 	varAlert = varAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed(2) + "\n";
 	varAlert = varAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed(2) + "\n";
 	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
 	varAlert = varAlert + "scrollingElement.scrollBottom: " + varTmp.toFixed(2) + "\n";
-	
 	varAlert = varAlert + "\n";
 	
+	// documentElement height
 	varAlert = varAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop.toFixed(2) + "\n";
 	varAlert = varAlert + "documentElement.clientHeight: " + document.documentElement.clientHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "documentElement.clientTop: " + document.documentElement.clientTop.toFixed(2) + "\n";
 	varTmp = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight - document.documentElement.clientTop;
 	varAlert = varAlert + "documentElement.scrollBottom: " + varTmp.toFixed(2) + "\n";
-
 	varAlert = varAlert + "\n";
 
+	// body height
 	varAlert = varAlert + "body.scrollHeight: " + document.body.scrollHeight.toFixed(2) + "\n";
 	varAlert = varAlert + "body.scrollTop: " + document.body.scrollTop.toFixed(2) + "\n";
 	varAlert = varAlert + "body.clientHeight: " + document.body.clientHeight.toFixed(2) + "\n";
@@ -131,16 +134,16 @@ function fncShareCSS(){
 	var varString='';
 	var varImgUp;
 	var varImgDown;
-	var varImgCheck;
+	var varImgCheck; // beta version only
 	
 	// img vs button
 	varImgUp = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB+SURBVDhPY1i1atV/amAGahgCMoNhaIGlS5cKAp19BoRBbLJcj2QILDJINwzoAmMgfoclIkBixkS5DI8hMJcRNgxoSBoOl6CnNZBhaVhdBjWE1MSJahjQkA4KEmYH2GUrV66cSYEhYB+AzKBtFiHkQqKiH6Ro1CDCQTWgYQQAs81DU0G/83sAAAAASUVORK5CYII=';
 	varImgDown = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPY2DAAlatWvUfH8amB6vYqEGEg2pgw4iQ7cTKM6xcuXImsYpxqQOZAQ4woIIOCgzrQAl1oEFpZBiWhitFgwx7R4SBIDXYDYGZDFRgTMAwkCHGhBMRJMxwGUa8ITCbli5dKgg08AySN8+AxIhyCboiJMPIN4Qsm6miiYioxltawvSDYogohYTUAQC80UNTOht/YwAAAABJRU5ErkJggg==';
-	varImgCheck = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABTSURBVDhPY/z//z8DNQATlKYYEDRo9erV/0EYysUJqOaiIRhGxAKsXsMWuKGhoYxQJlZAv8CGuY5uLho1iDAYfAYRnbJhAFd6ornX2PFgLICBAQBQciFGldEVwAAAAABJRU5ErkJggg==';
+	varImgCheck = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABTSURBVDhPY/z//z8DNQATlKYYEDRo9erV/0EYysUJqOaiIRhGxAKsXsMWuKGhoYxQJlZAv8CGuY5uLho1iDAYfAYRnbJhAFd6ornX2PFgLICBAQBQciFGldEVwAAAAABJRU5ErkJggg=='; // beta version only
 	// button id
 	varString+='#play_btn_up { position:fixed; right:0; bottom:' + varYPosition + '%;z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgUp+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
 	varString+='#play_btn_dn { position:fixed; right:0; top:' + varYPosition + '%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgDown+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-	varString+='#play_btn_chk { position:fixed; right:0; top:' + (varYPosition + 15) + '%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgCheck+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+	varString+='#play_btn_chk { position:fixed; right:0; top:' + (varYPosition + 15) + '%;   z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url('+varImgCheck+') no-repeat scroll 50% 50% rgba(0, 0, 0, 0.7); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
 	// button class
 	varString+='.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 	varString+='.play_btn:hover { opacity:1; }'; 
@@ -150,14 +153,13 @@ function fncShareCSS(){
 
 // main
 function fncCreateButtonElement() { 
-	// get scroll
 	var varUpButton;
 	var varDownButton;
-	var varCheckButton;
-	var varScrollTop;
+	var varCheckButton; // beta version only
 	var varDocumentHeight = fncSelectElement();
 	var varHeight = fncGetScroll('Height');
 	var varClickFlag = 0;
+
 	// exit	var
 	if(!varHeight) { return; } // end if
 	
@@ -169,35 +171,38 @@ function fncCreateButtonElement() {
 		// create DOM element
 		varUpButton = fncCreateElement('span');
 		varDownButton = fncCreateElement('span');
-		varCheckButton = fncCreateElement('span');
+		varCheckButton = fncCreateElement('span'); // beta version only
 		// set attribute
 		varUpButton.setAttribute('id','play_btn_up');
 		varDownButton.setAttribute('id','play_btn_dn');
-		varCheckButton.setAttribute('id','play_btn_chk');
+		varCheckButton.setAttribute('id','play_btn_chk'); // beta version only
 		// set class
 		varUpButton.className = "play_btn";
 		varDownButton.className = "play_btn";
-		varCheckButton.className = "play_btn";
+		varCheckButton.className = "play_btn"; // beta version only
 		// append element
 		document.body.appendChild(varUpButton);
 		document.body.appendChild(varDownButton);
-		document.body.appendChild(varCheckButton);
+		document.body.appendChild(varCheckButton); // beta version only
 		
 		// switch visible/invisible buttons
 		function fncVisibleButtons(varFlag) {
 			varUpButton.style.display = "";
 			varDownButton.style.display = "";
-			varCheckButton.style.display = "";
+			varCheckButton.style.display = ""; // beta version only
 			return true;
 		}; // end function
 
 		// switch visible/invisible buttons
 		function fncInvisibleButtons() {
-			varUpButton.style.display = "none";
-			varDownButton.style.display = "none";
-			varCheckButton.style.display = "none";
+			if (varAutoHideButtons = true) {
+				varUpButton.style.display = "none";
+				varDownButton.style.display = "none";
+				varCheckButton.style.display = "none"; // beta version only
+			}
 			return true;
-		}; // end function		
+		}; // end function
+
 		// reset timer
 		function fncRestartTimer() {
 			fncVisibleButtons;
@@ -221,7 +226,7 @@ function fncCreateButtonElement() {
 			// if scroll down
 			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
 			// always on
-			varCheckButton.style.display = "";
+			varCheckButton.style.display = ""; // beta version only
 			
 			// if click
 			if (varClickFlag < 0) {
@@ -231,7 +236,7 @@ function fncCreateButtonElement() {
 				varDownButton.style.display = "none";
 				varClickFlag = 0;
 			} // end if
-		};
+		}; // end function
 		
 		// add event loading
 		window.addEventListener('load', fncRestartTimer, false);
@@ -247,13 +252,12 @@ function fncCreateButtonElement() {
 		varDownButton.addEventListener('click', function(){clearTimeout(varDownTimer);}, false);
 		varDownButton.addEventListener('click', function(){varClickFlag = 1;}, false);
 		
-		varCheckButton.addEventListener('click', fncRestartTimer, false);
-		varCheckButton.addEventListener('click', fncCheckHeight, false);
+		varCheckButton.addEventListener('click', fncRestartTimer, false); // beta version only
+		varCheckButton.addEventListener('click', fncCheckHeight, false); // beta version only
 		
 		// add event scroll
 		document.addEventListener('scroll', fncOnScroll, false);
 		document.addEventListener('scroll', fncRestartTimer, false);
-		
 	} // end if
 } // end of function
 
