@@ -59,6 +59,7 @@ function fncAddStyle(varCSS) {
 function fncMoveUp() { 
 	window.scrollTo(0, 0);
 	varUpTimer = setTimeout(fncMoveUp, varTimeOut);
+	return true;
 } // end of function
 
 // move down
@@ -67,6 +68,7 @@ function fncMoveDown() {
 	var varBottom = varDocumentHeight.scrollHeight - varDocumentHeight.clientHeight;
 	window.scrollTo(0, varBottom*1.05); // +5% over scroll
 	varDownTimer = setTimeout(fncMoveDown, varTimeOut);
+	return true;
 } // end of function
 
 // Height check
@@ -181,32 +183,23 @@ function fncCreateButtonElement() {
 		document.body.appendChild(varDownButton);
 		document.body.appendChild(varCheckButton);
 		
-		// scroll
-//		varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
-		// if scroll
-//		varUpButton.style.display = (varScrollTop > 0)  ? "" : "none";
-		
-		function fncInvisibleButtons(){
-			varUpButton.style.display = "none";
-			varDownButton.style.display = "none";
-			varCheckButton.style.display = "none";
+		// switch visible/invisible buttons
+		function fncVisibleButtons(varFlag) {
+			varUpButton.style.display = (varFlag)  ? "" : "none";
+			varDownButton.style.display = (varFlag)  ? "" : "none";
+			varCheckButton.style.display = (varFlag)  ? "" : "none";
 			return true;
-		};
+		}; // end function
 		
-		function fncVisibleButtons() {
-			varUpButton.style.display = "";
-			varDownButton.style.display = "";
-			varCheckButton.style.display = "";
-			return true;
-		};
-		
+		// reset timer
 		function fncRestartTimer() {
-			fncVisibleButtons;
+			fncVisibleButtons(true);
 			clearTimeout(varIdleTimer);
-			varIdleTimer = setTimeout(fncInvisibleButtons, varIdleTimeOut);
+			varIdleTimer = setTimeout(fncVisibleButtons(false), varIdleTimeOut);
 			return true;
-		};
+		}; // end function
 		
+		// OnScroll Event
 		function fncOnScroll() {
 			var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
 			var varScrollHeight = varDocumentHeight.scrollHeight;
@@ -220,7 +213,7 @@ function fncCreateButtonElement() {
 			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
 			// if scroll down
 			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
-			
+			// always on
 			varCheckButton.style.display = "";
 			
 			// if click
@@ -252,33 +245,6 @@ function fncCreateButtonElement() {
 		document.addEventListener('scroll', fncOnScroll, false);
 		document.addEventListener('scroll', fncRestartTimer, false);
 		
-/*		// if scroll
-		window.onscroll = function() { 
-			var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
-			var varScrollHeight = varDocumentHeight.scrollHeight;
-			var varClientHeight = varDocumentHeight.clientHeight;
-			var varClientTop = varDocumentHeight.clientTop;
-			var varScrollBottom = varScrollHeight - varClientHeight - varClientTop - varScrollTop;
-			
-			fncRestartTimer;
-			
-			// if scroll up
-			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
-			// if scroll down
-			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
-			
-			varCheckButton.style.display = "";
-			
-			// if click
-			if (varClickFlag < 0) {
-				varUpButton.style.display = "none";
-				varClickFlag = 0;
-			} else if (varClickFlag > 0) {
-				varDownButton.style.display = "none";
-				varClickFlag = 0;
-			} // end if
-		}; // end of function
-		*/
 	} // end if
 } // end of function
 
