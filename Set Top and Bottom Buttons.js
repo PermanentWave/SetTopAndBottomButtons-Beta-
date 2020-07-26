@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.08b10
+// @version 1.08b11
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -234,8 +234,6 @@ function fncCreateButtonElement() {
 			var varClientTop = varDocumentHeight.clientTop;
 			var varScrollBottom = varScrollHeight - varClientHeight - varClientTop - varScrollTop;
 			
-			fncRestartTimer;
-			
 			// if scroll up
 			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
 			// if scroll down
@@ -257,21 +255,18 @@ function fncCreateButtonElement() {
 		window.addEventListener('load', fncRestartTimer, false);
 		
 		// add event click
-		varUpButton.addEventListener('click', fncRestartTimer, false);
 		varUpButton.addEventListener('click', fncMoveUp, false);
 		varUpButton.addEventListener('click', function(){ clearTimeout(varUpTimer); }, false);
 		varUpButton.addEventListener('click', function(){ varClickFlag = -1; }, false);
 		
-		varDownButton.addEventListener('click', fncRestartTimer, false);
 		varDownButton.addEventListener('click', fncMoveDown, false);
 		varDownButton.addEventListener('click', function(){ clearTimeout(varDownTimer); }, false);
 		varDownButton.addEventListener('click', function(){ varClickFlag = 1; }, false);
 		
-		varCheckButton.addEventListener('click', fncRestartTimer, false); // beta version only
 		varCheckButton.addEventListener('click', fncCheckHeight, false); // beta version only
 		
 		// add event scroll
-//		document.addEventListener('scroll', fncRestartTimer, false);
+		document.addEventListener('scroll', fncRestartTimer, false);
 		document.addEventListener('scroll', fncOnScroll, false);
 
 	} // end if
