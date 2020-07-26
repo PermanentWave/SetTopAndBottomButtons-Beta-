@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.08b6
+// @version 1.08b7
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -18,13 +18,13 @@ var varDownTimer;
 var varIdleTimer;
 // up and down timeout
 var varTimeOut;
-// idle timeout
-const varIdleTimeOut = 3000; // edit this value
-// z-index
+// z-index (layer number)
 const varZIndex = 1001; // edit this value
 // y-position (%)
 const varYPosition = 55; // edit this value
-// auto hide buttons
+// idle timeout (milliseconds)
+const varIdleTimeOut = 3000; // edit this value
+// auto hide buttons (true:auto hide, false:always show)
 const varAutoHideMode = true; // edit this value
 
 // [1] skip all iframe 
@@ -73,7 +73,7 @@ function fncMoveDown() {
 	return true;
 } // end of function
 
-// Height check // only beta version
+// Height check		// only beta version
 function fncCheckHeight() {
 	var varAlert = "";
 	var varTmp;
