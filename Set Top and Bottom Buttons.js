@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.08b1
+// @version 1.08b2
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -185,17 +185,24 @@ function fncCreateButtonElement() {
 		
 		// switch visible/invisible buttons
 		function fncVisibleButtons(varFlag) {
-			varUpButton.style.display = (varFlag)  ? "" : "none";
-			varDownButton.style.display = (varFlag)  ? "" : "none";
-			varCheckButton.style.display = (varFlag)  ? "" : "none";
+			varUpButton.style.display = "";
+			varDownButton.style.display = "";
+			varCheckButton.style.display = "";
 			return true;
 		}; // end function
-		
+
+		// switch visible/invisible buttons
+		function fncInvisibleButtons() {
+			varUpButton.style.display = "none";
+			varDownButton.style.display = "none";
+			varCheckButton.style.display = "none";
+			return true;
+		}; // end function		
 		// reset timer
 		function fncRestartTimer() {
-			fncVisibleButtons(true);
+			fncVisibleButtons;
 			clearTimeout(varIdleTimer);
-			varIdleTimer = setTimeout(fncVisibleButtons(false), varIdleTimeOut);
+			varIdleTimer = setTimeout(fncInvisibleButtons, varIdleTimeOut);
 			return true;
 		}; // end function
 		
@@ -226,6 +233,7 @@ function fncCreateButtonElement() {
 			} // end if
 		};
 		
+		// add event loading
 		window.addEventListener('load', fncRestartTimer, false);
 		
 		// add event click
@@ -242,6 +250,7 @@ function fncCreateButtonElement() {
 		varCheckButton.addEventListener('click', fncRestartTimer, false);
 		varCheckButton.addEventListener('click', fncCheckHeight, false);
 		
+		// add event scroll
 		document.addEventListener('scroll', fncOnScroll, false);
 		document.addEventListener('scroll', fncRestartTimer, false);
 		
