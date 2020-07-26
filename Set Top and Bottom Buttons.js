@@ -18,13 +18,13 @@ var varDownTimer;
 var varIdleTimer;
 // up and down timeout
 var varTimeOut;
-// z-index ( layer number )
+// z-index (layer number)
 const varZIndex = 1001; // edit this value
-// y-position ( % )
+// y-position (%)
 const varYPosition = 55; // edit this value
-// idle timeout ( milliseconds )
+// idle timeout (milliseconds)
 const varIdleTimeOut = 2000; // edit this value
-// auto hide buttons ( true:auto hide, false:always show )
+// auto hide buttons (true:auto hide, false:always show)
 const varAutoHideMode = true; // edit this value
 
 // [1] skip all iframe 
@@ -84,40 +84,40 @@ function fncCheckHeight( ) {
 	var varElement = fncSelectElement( );
 
 	// loading height
-	varAlert = varAlert + "( Loading ) scrollHeight: " + varElement.scrollHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "( Loading ) scrollTop: " + varElement.scrollTop.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "( Loading ) clientHeight: " + varElement.clientHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "( Loading ) clientTop: " + varElement.clientTop.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "(Loading) scrollHeight: " + varElement.scrollHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "(Loading) scrollTop: " + varElement.scrollTop.toFixed(2) + "\n";
+	varAlert = varAlert + "(Loading) clientHeight: " + varElement.clientHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "(Loading) clientTop: " + varElement.clientTop.toFixed(2) + "\n";
 	varTmp = varElement.scrollHeight - varElement.scrollTop - varElement.clientHeight - varElement.clientTop;
-	varAlert = varAlert + "( Loading ) scrollBottom: " + varTmp.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "(Loading) scrollBottom: " + varTmp.toFixed(2) + "\n";
 	varAlert = varAlert + "\n";
 	varAlert = varAlert + "\n";
 
 	// scrollingElement height
-	varAlert = varAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed(2) + "\n";
+	varAlert = varAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed(2) + "\n";
 	varTmp = document.scrollingElement.scrollHeight - document.scrollingElement.scrollTop - document.scrollingElement.clientHeight - document.scrollingElement.clientTop;
-	varAlert = varAlert + "scrollingElement.scrollBottom: " + varTmp.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "scrollingElement.scrollBottom: " + varTmp.toFixed(2) + "\n";
 	varAlert = varAlert + "\n";
 	
 	// documentElement height
-	varAlert = varAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "documentElement.clientHeight: " + document.documentElement.clientHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "documentElement.clientTop: " + document.documentElement.clientTop.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop.toFixed(2) + "\n";
+	varAlert = varAlert + "documentElement.clientHeight: " + document.documentElement.clientHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "documentElement.clientTop: " + document.documentElement.clientTop.toFixed(2) + "\n";
 	varTmp = document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight - document.documentElement.clientTop;
-	varAlert = varAlert + "documentElement.scrollBottom: " + varTmp.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "documentElement.scrollBottom: " + varTmp.toFixed(2) + "\n";
 	varAlert = varAlert + "\n";
 
 	// body height
-	varAlert = varAlert + "body.scrollHeight: " + document.body.scrollHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "body.scrollTop: " + document.body.scrollTop.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "body.clientHeight: " + document.body.clientHeight.toFixed( 2 ) + "\n";
-	varAlert = varAlert + "body.clientTop: " + document.body.clientTop.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "body.scrollHeight: " + document.body.scrollHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "body.scrollTop: " + document.body.scrollTop.toFixed(2) + "\n";
+	varAlert = varAlert + "body.clientHeight: " + document.body.clientHeight.toFixed(2) + "\n";
+	varAlert = varAlert + "body.clientTop: " + document.body.clientTop.toFixed(2) + "\n";
 	varTmp = document.body.scrollHeight - document.body.scrollTop - document.body.clientHeight - document.body.clientTop;
-	varAlert = varAlert + "body.scrollBottom: " + varTmp.toFixed( 2 ) + "\n";
+	varAlert = varAlert + "body.scrollBottom: " + varTmp.toFixed(2) + "\n";
 
 	alert( varAlert );
 } // end of function
@@ -145,9 +145,9 @@ function fncShareCSS( ){
 	varImgDown = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPY2DAAlatWvUfH8amB6vYqEGEg2pgw4iQ7cTKM6xcuXImsYpxqQOZAQ4woIIOCgzrQAl1oEFpZBiWhitFgwx7R4SBIDXYDYGZDFRgTMAwkCHGhBMRJMxwGUa8ITCbli5dKgg08AySN8+AxIhyCboiJMPIN4Qsm6miiYioxltawvSDYogohYTUAQC80UNTOht/YwAAAABJRU5ErkJggg==';
 	varImgCheck = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABTSURBVDhPY/z//z8DNQATlKYYEDRo9erV/0EYysUJqOaiIRhGxAKsXsMWuKGhoYxQJlZAv8CGuY5uLho1iDAYfAYRnbJhAFd6ornX2PFgLICBAQBQciFGldEVwAAAAABJRU5ErkJggg=='; // beta version only
 	// button id
-	varString+='#play_btn_up { position:fixed; right:0; bottom:' + varYPosition + '%;z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url( ' + varImgUp + ' ) no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-	varString+='#play_btn_dn { position:fixed; right:0; top:' + varYPosition + '%;  z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url( ' + varImgDown + ' ) no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-	varString+='#play_btn_chk { position:fixed; right:0; top:' + ( varYPosition + 15 ) + '%;  z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url( ' + varImgCheck + ' ) no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
+	varString+='#play_btn_up { position:fixed; right:0; bottom:' + varYPosition + '%;z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url(' + varImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+	varString+='#play_btn_dn { position:fixed; right:0; top:' + varYPosition + '%;  z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url(' + varImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+	varString+='#play_btn_chk { position:fixed; right:0; top:' + ( varYPosition + 15 ) + '%;  z-index:'+varZIndex+'; height:36px; width:36px; cursor:pointer; background:url(' + varImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
 	// button class
 	varString+='.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 	varString+='.play_btn:hover { opacity:1; }'; 
