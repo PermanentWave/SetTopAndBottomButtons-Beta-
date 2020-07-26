@@ -72,7 +72,7 @@ function fncMoveUp( ) {
 function fncMoveDown( ) { 
 	var varDocumentHeight = fncSelectElement( );
 	var varBottom = varDocumentHeight.scrollHeight - varDocumentHeight.clientHeight;
-	window.scrollTo( 0, varBottom*1.05 ); // +5% over scroll
+	window.scrollTo( 0, varBottom * 1.05 ); // +5% over scroll
 	varDownTimer = setTimeout( fncMoveDown, varTimeOut );
 	return true;
 } // end of function
