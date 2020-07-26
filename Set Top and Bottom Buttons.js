@@ -23,7 +23,7 @@ const varZIndex = 1001; // edit this value
 // y-position (%)
 const varYPosition = 55; // edit this value
 // idle timeout (milliseconds)
-const varIdleTimeOut = 3000; // edit this value
+const varIdleTimeOut = 2000; // edit this value
 // auto hide buttons (true:auto hide, false:always show)
 const varAutoHideMode = true; // edit this value
 
