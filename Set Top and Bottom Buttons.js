@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.08b8
+// @version 1.08b9
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -191,8 +191,8 @@ function fncCreateButtonElement() {
 		
 		// switch visible buttons
 		function fncVisibleButtons() {
-			varUpButton.style.display = "";
-			varDownButton.style.display = "";
+			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
+			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
 			varCheckButton.style.display = ""; // beta version only
 			return true;
 		}; // end function
@@ -260,8 +260,9 @@ function fncCreateButtonElement() {
 		varCheckButton.addEventListener('click', fncCheckHeight, false); // beta version only
 		
 		// add event scroll
+//		document.addEventListener('scroll', fncRestartTimer, false);
 		document.addEventListener('scroll', fncOnScroll, false);
-		document.addEventListener('scroll', fncRestartTimer, false);
+
 	} // end if
 } // end of function
 
