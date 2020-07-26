@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.08b3
+// @version 1.08b4
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
@@ -19,13 +19,13 @@ var varIdleTimer;
 // up and down timeout
 var varTimeOut;
 // idle timeout
-var varIdleTimeOut = 3000; // edit this value
+const varIdleTimeOut = 3000; // edit this value
 // z-index
-var varZIndex = 1001; // edit this value
+const varZIndex = 1001; // edit this value
 // y-position (%)
-var varYPosition = 55;  // edit this value
-// always appear buttons
-var varAutoHideButtons = true;
+const varYPosition = 55; // edit this value
+// auto hide buttons
+const varAutoHideMode = true; // edit this value
 
 // [1] skip all iframe 
 if (window.self!=window.top) {return}
@@ -185,7 +185,7 @@ function fncCreateButtonElement() {
 		document.body.appendChild(varDownButton);
 		document.body.appendChild(varCheckButton); // beta version only
 		
-		// switch visible/invisible buttons
+		// switch visible buttons
 		function fncVisibleButtons(varFlag) {
 			varUpButton.style.display = "";
 			varDownButton.style.display = "";
@@ -193,9 +193,9 @@ function fncCreateButtonElement() {
 			return true;
 		}; // end function
 
-		// switch visible/invisible buttons
+		// switch invisible buttons
 		function fncInvisibleButtons() {
-			if (varAutoHideButtons = true) {
+			if (varAutoHideMode = true) {
 				varUpButton.style.display = "none";
 				varDownButton.style.display = "none";
 				varCheckButton.style.display = "none"; // beta version only
