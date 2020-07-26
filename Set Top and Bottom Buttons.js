@@ -266,8 +266,8 @@ function fncCreateButtonElement() {
 		varCheckButton.addEventListener('click', fncCheckHeight, false); // beta version only
 		
 		// add event scroll
-		document.addEventListener('scroll', fncRestartTimer, false);
-		document.addEventListener('scroll', fncOnScroll, false);
+		window.addEventListener('scroll', fncRestartTimer, false);
+		window.addEventListener('scroll', fncOnScroll, false);
 
 	} // end if
 } // end of function
