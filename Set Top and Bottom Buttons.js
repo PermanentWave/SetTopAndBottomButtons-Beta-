@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name Set Top and Bottom buttons ( Beta )
-// @description Set Top and Bottom buttons on your browser ( Beta )
+// @name Set Top and Bottom buttons (Beta)
+// @description Set Top and Bottom buttons on your browser (Beta)
 // @version 1.08b11
 // @author PermanentWave
-// @license Copyright ( c ) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
+// @license Copyright (c) 2020 PermanentWave Released under the MIT license https://opensource.org/licenses/mit-license.php
 // @include *
 // @icon http://github.com/PermanentWave.png
 // @run-at document-end
