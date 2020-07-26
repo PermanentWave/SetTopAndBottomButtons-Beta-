@@ -191,6 +191,12 @@ function fncCreateButtonElement() {
 		
 		// switch visible buttons
 		function fncVisibleButtons() {
+			var varScrollTop = window.pageYOffset || varDocumentHeight.scrollTop;
+			var varScrollHeight = varDocumentHeight.scrollHeight;
+			var varClientHeight = varDocumentHeight.clientHeight;
+			var varClientTop = varDocumentHeight.clientTop;
+			var varScrollBottom = varScrollHeight - varClientHeight - varClientTop - varScrollTop;
+						
 			varUpButton.style.display = ( varScrollTop > 0 )  ? "" : "none";
 			varDownButton.style.display = ( varScrollBottom >= 1 )  ? "" : "none"; // remove digits after decimal point
 			varCheckButton.style.display = ""; // beta version only
