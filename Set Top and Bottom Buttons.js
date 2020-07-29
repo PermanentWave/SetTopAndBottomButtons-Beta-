@@ -113,6 +113,7 @@ function SetTopBottomButtons( ) {
 		} // end if
 		letAlert = letAlert + "\n";
 		letAlert = letAlert + "\n";
+		letAlert = letAlert + "\n";
 
 		// scrollingElement height
 		letAlert = letAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
