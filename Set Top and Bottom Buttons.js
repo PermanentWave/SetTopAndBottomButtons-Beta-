@@ -189,7 +189,7 @@ function SetTopBottomButtons( ) {
 		let letClickFlag = 0;
 
 		// exit	let
-		if( !letHeight ) { return; } // end if
+		if( !letHeight ) { return; }; // end if
 
 		// add css
 		fncShareCSS( ); 
