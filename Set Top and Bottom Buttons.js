@@ -19,7 +19,7 @@ function SetTopBottomButtons( ) {
 	let letDownTimer;
 	let letIdleTimer;
 	// up and down timeout
-	let letTimeOut;
+	const constTimeOut = 0;
 	// z-index (layer number)
 	const constZIndex = 1001; // edit this value
 	// y-position (%)
@@ -68,7 +68,7 @@ function SetTopBottomButtons( ) {
 	// move up
 	function fncMoveUp( ) { 
 		window.scrollTo( 0, 0 );
-		letUpTimer = setTimeout( fncMoveUp, letTimeOut );
+		letUpTimer = setTimeout( fncMoveUp, constTimeOut );
 
 		return true;
 	}; // end of function
@@ -78,7 +78,7 @@ function SetTopBottomButtons( ) {
 		let letDocumentHeight = fncSelectElement( );
 		let letBottom = letDocumentHeight.scrollHeight - letDocumentHeight.clientHeight;
 		window.scrollTo( 0, letBottom * 1.05 ); // +5% over scroll
-		letDownTimer = setTimeout( fncMoveDown, letTimeOut );
+		letDownTimer = setTimeout( fncMoveDown, constTimeOut );
 
 		return true;
 	}; // end of function
