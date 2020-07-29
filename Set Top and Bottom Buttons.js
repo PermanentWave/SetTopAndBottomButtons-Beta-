@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @version 1.09b5
+// @version 1.09b6
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://github.com/PermanentWave/SetTopAndBottomButtons/blob/master/LICENSE
 // @include *
@@ -300,6 +300,7 @@ function SetTopBottomButtons( ) {
 	// run it
 	fncCreateButtonElement( );
 
+	return true;
 }; // end of function
 
 // call
