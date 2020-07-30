@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
-// @description Set Top and Bottom buttons on your browser (Beta)
+// @description Set Top and Bottom buttons on your browser
 // @version 1.09b6
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://github.com/PermanentWave/SetTopAndBottomButtons/blob/master/LICENSE
@@ -13,7 +13,7 @@
 function SetTopBottomButtons( ) {
 
 	// load element
-	let letHtmlElement = fncSelectElement( );
+	let letElement = fncSelectElement( );
 	// timer
 	let letUpTimer;
 	let letDownTimer;
@@ -83,11 +83,17 @@ function SetTopBottomButtons( ) {
 		return true;
 	}; // end of function
 
-	function fncScrollBottom( letDocument ) {
-		let letScrollTop = window.pageYOffset || letDocument.scrollTop;
-		let letScrollHeight = letDocument.scrollHeight;
-		let letClientHeight = letDocument.clientHeight;
-		let letClientTop = letDocument.clientTop;
+	function fncScrollTop( varDocumentElement ) {
+		let letScrollTop = window.pageYOffset || varDocumentElement.scrollTop;
+
+		return letScrollTop;
+	}; // end of function
+
+	function fncScrollBottom( varDocumentElement ) {
+		let letScrollTop = fncScrollTop( varDocumentElement );
+		let letScrollHeight = varDocumentElement.scrollHeight;
+		let letClientHeight = varDocumentElement.clientHeight;
+		let letClientTop = varDocumentElement.clientTop;
 		let letScrollBottom = letScrollHeight - letClientHeight - letClientTop - letScrollTop;
 
 		return letScrollBottom;
@@ -117,7 +123,7 @@ function SetTopBottomButtons( ) {
 
 		// scrollingElement height
 		letAlert = letAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
-		letAlert = letAlert + "scrollingElement.scrollTop: " + document.scrollingElement.scrollTop.toFixed(2) + "\n";
+		letAlert = letAlert + "scrollingElement.scrollTop: " + fncScrollTop( document.scrollingElement ).toFixed(2) + "\n";
 		letAlert = letAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
 		letAlert = letAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed(2) + "\n";
 		letAlert = letAlert + "scrollingElement.scrollBottom: " + fncScrollBottom( document.scrollingElement ).toFixed(2) + "\n";
@@ -125,7 +131,7 @@ function SetTopBottomButtons( ) {
 
 		// documentElement height
 		letAlert = letAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight.toFixed(2) + "\n";
-		letAlert = letAlert + "documentElement.scrollTop: " + document.documentElement.scrollTop.toFixed(2) + "\n";
+		letAlert = letAlert + "documentElement.scrollTop: " + fncScrollTop( document.documentElement ).toFixed(2) + "\n";
 		letAlert = letAlert + "documentElement.clientHeight: " + document.documentElement.clientHeight.toFixed(2) + "\n";
 		letAlert = letAlert + "documentElement.clientTop: " + document.documentElement.clientTop.toFixed(2) + "\n";
 		letAlert = letAlert + "documentElement.scrollBottom: " + fncScrollBottom( document.documentElement ).toFixed(2) + "\n";
@@ -133,7 +139,7 @@ function SetTopBottomButtons( ) {
 
 		// body height
 		letAlert = letAlert + "body.scrollHeight: " + document.body.scrollHeight.toFixed(2) + "\n";
-		letAlert = letAlert + "body.scrollTop: " + document.body.scrollTop.toFixed(2) + "\n";
+		letAlert = letAlert + "body.scrollTop: " + fncScrollTop( document.body ).toFixed(2) + "\n";
 		letAlert = letAlert + "body.clientHeight: " + document.body.clientHeight.toFixed(2) + "\n";
 		letAlert = letAlert + "body.clientTop: " + document.body.clientTop.toFixed(2) + "\n";
 		letAlert = letAlert + "body.scrollBottom: " + fncScrollBottom( document.body ).toFixed(2) + "\n";
@@ -145,13 +151,12 @@ function SetTopBottomButtons( ) {
 
 	// document scroll
 	function fncGetScroll( letScrolledStep ) { 
-		let letDocument = document;
-		let letDocumentBody = letDocument.body;
-		let letDocumentElement = letDocument.documentElement;
+		let letDocumentBody = document.body;
+		let letDocumentElement = document.documentElement;
 		let letClient = "client" + letScrolledStep;
 		letScrolledStep = "scroll" + letScrolledStep;
 
-		return /CSS/.test( letDocument.compatMode )? ( letDocumentElement[letClient]< letDocumentElement[letScrolledStep] ) : ( letDocumentBody[letClient]< letDocumentBody[letScrolledStep] )
+		return /CSS/.test( document.compatMode )? ( letDocumentElement[letClient]< letDocumentElement[letScrolledStep] ) : ( letDocumentBody[letClient]< letDocumentBody[letScrolledStep] )
 	}; // end of function
 
 	// add css
@@ -161,7 +166,7 @@ function SetTopBottomButtons( ) {
 		let letImgUp;
 		let letImgDown;
 		let letImgCheck; // beta version only
-
+		
 		// img vs button
 		letImgUp = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB+SURBVDhPY1i1atV/amAGahgCMoNhaIGlS5cKAp19BoRBbLJcj2QILDJINwzoAmMgfoclIkBixkS5DI8hMJcRNgxoSBoOl6CnNZBhaVhdBjWE1MSJahjQkA4KEmYH2GUrV66cSYEhYB+AzKBtFiHkQqKiH6Ro1CDCQTWgYQQAs81DU0G/83sAAAAASUVORK5CYII=';
 		letImgDown = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPY2DAAlatWvUfH8amB6vYqEGEg2pgw4iQ7cTKM6xcuXImsYpxqQOZAQ4woIIOCgzrQAl1oEFpZBiWhitFgwx7R4SBIDXYDYGZDFRgTMAwkCHGhBMRJMxwGUa8ITCbli5dKgg08AySN8+AxIhyCboiJMPIN4Qsm6miiYioxltawvSDYogohYTUAQC80UNTOht/YwAAAABJRU5ErkJggg==';
@@ -184,7 +189,6 @@ function SetTopBottomButtons( ) {
 		let letUpButton;
 		let letDownButton;
 		let letCheckButton; // beta version only
-		let letElement = fncSelectElement( );
 		let letHeight = fncGetScroll( 'Height' );
 		let letClickFlag = 0;
 
@@ -195,7 +199,7 @@ function SetTopBottomButtons( ) {
 		fncShareCSS( ); 
 
 		// if 
-		if( letHtmlElement ){ 
+		if( letElement ){ 
 			// create DOM element
 			letUpButton = fncCreateElement( 'span' );
 			letDownButton = fncCreateElement( 'span' );
@@ -214,13 +218,13 @@ function SetTopBottomButtons( ) {
 			document.body.appendChild( letCheckButton ); // beta version only
 
 			// scroll
-			letScrollTop = window.pageYOffset || letElement.scrollTop;
+			let letScrollTop = fncScrollTop( letElement );
 			// if scroll 
 			letUpButton.style.display = ( letScrollTop > 0 ) ? "" : "none";
 
 			// switch visible buttons
 			function fncVisibleButtons( ) {
-				let letScrollTop = window.pageYOffset || letElement.scrollTop;
+				let letScrollTop = fncScrollTop( letElement );
 				let letScrollBottom = fncScrollBottom( letElement );
 
 				letUpButton.style.display = ( letScrollTop > 0 ) ? "" : "none";
@@ -252,7 +256,7 @@ function SetTopBottomButtons( ) {
 
 			// OnScroll Event
 			function fncOnScroll( ) {
-				let letScrollTop = window.pageYOffset || letElement.scrollTop;
+				let letScrollTop = fncScrollTop( letElement );
 				let letScrollBottom = fncScrollBottom( letElement );
 
 				// if scroll up
