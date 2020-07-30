@@ -248,7 +248,7 @@ function SetTopBottomButtons( ) {
 
 			// reset timer
 			function fncRestartTimer( ) {
-				fncVisibleButtons;
+				fncVisibleButtons( );
 				clearTimeout( letIdleTimer );
 				letIdleTimer = setTimeout( fncInvisibleButtons, constIdleTimeOut );
 
