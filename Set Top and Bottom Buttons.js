@@ -104,7 +104,7 @@ function SetTopBottomButtons( ) {
 	function fncCheckHeight( ) {
 		let letAlert = "";
 
-		letAlert = "Loading: "
+		letAlert = "<<Loading>>  "
 		// show element
 		if ( 'scrollingElement' in document ) {
 			letAlert = letAlert + "document.scrollingElement";
