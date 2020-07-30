@@ -10,6 +10,7 @@
 // @grant none
 // ==/UserScript==
 
+// package
 function SetTopBottomButtons( ) {
 
 	// load element
