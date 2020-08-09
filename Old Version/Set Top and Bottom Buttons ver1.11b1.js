@@ -84,7 +84,7 @@ function SetTopBottomButtons( ) {
 		return true;
 	}; // end of function
 
-	// get y-position
+	// get y-position from top
 	function fncScrollTop( varDocumentElement ) {
 		let letScrollTop = window.pageYOffset || varDocumentElement.scrollTop;
 
@@ -188,13 +188,13 @@ function SetTopBottomButtons( ) {
 		let letHeight = fncGetScroll( );
 		let letClickFlag = 0;
 
-		// exit	let
+		// exit function
 		if( !letHeight ) { return; }; // end if
 
 		// add css
 		fncShareCSS( ); 
 
-		// if 
+		// if loading element
 		if( letElement ){ 
 			// create DOM element
 			letUpButton = fncCreateElement( 'span' );
