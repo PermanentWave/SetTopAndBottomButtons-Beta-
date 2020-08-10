@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Set Top and Bottom buttons (Beta)
-// @description Set Top and Bottom buttons on your browser
-// @version 1.11b1
+// @description Set Top and Bottom buttons on your browser (Beta)
+// @version 1.11b2
 // @author PermanentWave
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://github.com/PermanentWave/SetTopAndBottomButtons/blob/master/LICENSE
 // @include *
@@ -14,7 +14,7 @@
 function SetTopBottomButtons( ) {
 
 	// load element
-	let letElement = fncSelectElement( );
+	const letElement = fncSelectElement( );
 	// timer
 	let letUpTimer;
 	let letDownTimer;
@@ -162,7 +162,7 @@ function SetTopBottomButtons( ) {
 		let letImgUp;
 		let letImgDown;
 		let letImgCheck; // beta version only
-		
+
 		// img vs button
 		letImgUp = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB+SURBVDhPY1i1atV/amAGahgCMoNhaIGlS5cKAp19BoRBbLJcj2QILDJINwzoAmMgfoclIkBixkS5DI8hMJcRNgxoSBoOl6CnNZBhaVhdBjWE1MSJahjQkA4KEmYH2GUrV66cSYEhYB+AzKBtFiHkQqKiH6Ro1CDCQTWgYQQAs81DU0G/83sAAAAASUVORK5CYII=';
 		letImgDown = 'data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPY2DAAlatWvUfH8amB6vYqEGEg2pgw4iQ7cTKM6xcuXImsYpxqQOZAQ4woIIOCgzrQAl1oEFpZBiWhitFgwx7R4SBIDXYDYGZDFRgTMAwkCHGhBMRJMxwGUa8ITCbli5dKgg08AySN8+AxIhyCboiJMPIN4Qsm6miiYioxltawvSDYogohYTUAQC80UNTOht/YwAAAABJRU5ErkJggg==';
@@ -277,21 +277,20 @@ function SetTopBottomButtons( ) {
 			// add event loading
 			window.addEventListener( 'load', fncRestartTimer, false );
 
-			// add event click
+			// add event click up button
 			letUpButton.addEventListener( 'click', fncMoveUp, false );
 			letUpButton.addEventListener( 'click', function( ){ clearTimeout( letUpTimer ); }, false );
 			letUpButton.addEventListener( 'click', function( ){ letClickFlag = -1; }, false );
-
+			// add event click down button
 			letDownButton.addEventListener( 'click', fncMoveDown, false );
 			letDownButton.addEventListener( 'click', function( ){ clearTimeout( letDownTimer ); }, false );
 			letDownButton.addEventListener( 'click', function( ){ letClickFlag = 1; }, false );
-
+			// add event click information button
 			letCheckButton.addEventListener( 'click', fncCheckHeight, false ); // beta version only
 
 			// add event scroll
 			window.addEventListener( 'scroll', fncRestartTimer, false );
 			window.addEventListener( 'scroll', fncOnScroll, false );
-
 		} // end if
 
 		return true;
