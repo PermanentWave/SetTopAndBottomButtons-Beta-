@@ -1,13 +1,12 @@
 // ==UserScript==
-// @name Set Top and Bottom buttons (Beta)
-// @name:ja 最上部/最下部移動ボタン追加 (Beta)
+// @name AdGuard Set Top and Bottom buttons (Beta)
+// @name:ja AdGuard 最上部/最下部 移動ボタン (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
-// @description:ja 最上部/最下部移動ボタンをブラウザ上に追加します (Beta)
-// @version 1.11b2
+// @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
+// @version 1.11b3
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @downloadURL https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/Set%20Top%20and%20Bottom%20Buttons.js
-// @updateURL https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/Set%20Top%20and%20Bottom%20Buttons.js
 // @supportURL https://github.com/PermanentWave/SetTopAndBottomButtons/issues
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://github.com/PermanentWave/SetTopAndBottomButtons/blob/master/LICENSE
 // @include *
