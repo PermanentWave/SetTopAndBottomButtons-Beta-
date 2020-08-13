@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name AdGuard Set Top and Bottom buttons (Beta)
+// @name AdGuard Set buttons to jump to top and bottom (Beta)
 // @name:ja AdGuard 最上部/最下部 移動ボタン (Beta)
-// @description Set Top and Bottom buttons on your browser (Beta)
+// @description Set buttons to jump top and bottom on the Web page. The primary use is userscript extension for AdGuard. (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 1.11b3
+// @version 1.11b4
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @downloadURL https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/Set%20Top%20and%20Bottom%20Buttons.js
