@@ -1,17 +1,19 @@
-# What's this?
-Set Top and Bottom buttons on your browser.  
-This script is debuged with AdGuard Pro for Android as Extension.  
+## What's this?
+Set buttons to jump to top and bottom on the Web page.  
+The primary use is userscript extension for AdGuard.  
+This script is debuged with AdGuard Pro (for Windows/Android) as Extension.  
 You can use this script on your website such as blog.  
-This is Beta Version.  
+This is beta version.  
 
-# License
+## License
 MIT License
 
-# このプログラムについて
-ブラウザ上にページトップとページボトムのボタンを追加します。  
-AdGuard Pro for Android上にて拡張機能としてデバッグしています。  
+## このプログラムについて
+ブラウザ上にページ最上部とページ最下部へ移動するボタンを追加します。  
+AdGuardのuserscriptとしての運用が主な用途です。  
+AdGuard Pro (for Windows/Android)上にて拡張機能としてデバッグしています。  
 が、ブログ等ウェブサイト等で(多分)動作します。  
-これはBeta版です。  
+これはベータ版です。  
 
-# ライセンス
+## ライセンス
 MIT License
