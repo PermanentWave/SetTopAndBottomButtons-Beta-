@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name AdGuard Set buttons to jump to top and bottom (Beta)
+// @name AdGuard Set Top and Bottom buttons (Beta)
 // @name:ja AdGuard 最上部/最下部 移動ボタン (Beta)
-// @description Set buttons to jump to top and bottom on the Web page. The primary use is userscript extension for AdGuard. (Beta)
+// @description Set Top and Bottom buttons on your browser (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 1.11b4
+// @version 1.12b1
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @downloadURL https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/Set%20Top%20and%20Bottom%20Buttons.js
@@ -193,12 +193,63 @@ function SetTopBottomButtons( ) {
 		let letHeight = fncGetScroll( );
 		let letClickFlag = 0;
 
+		// switch visible buttons
+		function fncVisibleButtons( ) {
+			let letScrollTop = fncScrollTop( letElement );
+			let letScrollBottom = fncScrollBottom( letElement );
+
+			// if scroll up
+			letUpButton.style.display = ( letScrollTop > 0 ) ? "" : "none";
+			// if scroll down
+			letDownButton.style.display = ( letScrollBottom >= 1 ) ? "" : "none"; // remove digits after decimal point
+			// always on
+			letCheckButton.style.display = ""; // beta version only
+
+			return true;
+		}; // end function
+
+		// switch invisible buttons
+		function fncInvisibleButtons( ) {
+			if ( constAutoHideMode ) {
+				letUpButton.style.display = "none";
+				letDownButton.style.display = "none";
+				letCheckButton.style.display = "none"; // beta version only
+			} // end if
+
+			return true;
+		}; // end function
+
+		// reset timer
+		function fncRestartTimer( ) {
+			fncVisibleButtons( );
+			clearTimeout( letIdleTimer );
+			letIdleTimer = setTimeout( fncInvisibleButtons, constIdleTimeOut );
+
+			return true;
+		}; // end function
+
+		// onscroll event
+		function fncOnScroll( ) {
+			fncVisibleButtons( );
+
+			// if click
+			if ( letClickFlag < 0 ) { // invisible top button if click top button
+				letUpButton.style.display = "none";
+				letClickFlag = 0;
+			} else if ( letClickFlag > 0 ) { // invisible buttom button if click buttom button
+				letDownButton.style.display = "none";
+				letClickFlag = 0;
+			} // end if
+
+			return true;
+		}; // end function
+
 		// exit function
 		if( !letHeight ) { return; }; // end if
 
 		// add css
 		fncShareCSS( ); 
-
+		
 		// if loading element
 		if( letElement ){ 
 			// create DOM element
@@ -218,66 +269,7 @@ function SetTopBottomButtons( ) {
 			document.body.appendChild( letDownButton );
 			document.body.appendChild( letCheckButton ); // beta version only
 
-			// scroll
-			let letScrollTop = fncScrollTop( letElement );
-			// if scroll 
-			letUpButton.style.display = ( letScrollTop > 0 ) ? "" : "none";
-
-			// switch visible buttons
-			function fncVisibleButtons( ) {
-				let letScrollTop = fncScrollTop( letElement );
-				let letScrollBottom = fncScrollBottom( letElement );
-
-				letUpButton.style.display = ( letScrollTop > 0 ) ? "" : "none";
-				letDownButton.style.display = ( letScrollBottom >= 1 ) ? "" : "none"; // remove digits after decimal point
-				letCheckButton.style.display = ""; // beta version only
-
-				return true;
-			}; // end function
-
-			// switch invisible buttons
-			function fncInvisibleButtons( ) {
-				if ( constAutoHideMode ) {
-					letUpButton.style.display = "none";
-					letDownButton.style.display = "none";
-					letCheckButton.style.display = "none"; // beta version only
-				} // end if
-
-				return true;
-			}; // end function
-
-			// reset timer
-			function fncRestartTimer( ) {
-				fncVisibleButtons( );
-				clearTimeout( letIdleTimer );
-				letIdleTimer = setTimeout( fncInvisibleButtons, constIdleTimeOut );
-
-				return true;
-			}; // end function
-
-			// onscroll event
-			function fncOnScroll( ) {
-				let letScrollTop = fncScrollTop( letElement );
-				let letScrollBottom = fncScrollBottom( letElement );
-
-				// if scroll up
-				letUpButton.style.display = ( letScrollTop > 0 ) ? "" : "none";
-				// if scroll down
-				letDownButton.style.display = ( letScrollBottom >= 1 ) ? "" : "none"; // remove digits after decimal point
-				// always on
-				letCheckButton.style.display = ""; // beta version only
-
-				// if click
-				if ( letClickFlag < 0 ) { // invisible top button if click top button
-					letUpButton.style.display = "none";
-					letClickFlag = 0;
-				} else if ( letClickFlag > 0 ) { // invisible buttom button if click buttom button
-					letDownButton.style.display = "none";
-					letClickFlag = 0;
-				} // end if
-
-				return true;
-			}; // end function
+			fncVisibleButtons( );
 
 			// add event loading
 			window.addEventListener( 'load', fncRestartTimer, false );
