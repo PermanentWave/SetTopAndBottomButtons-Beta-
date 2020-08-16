@@ -34,9 +34,6 @@ function SetTopBottomButtons( ) {
 	// auto hide buttons (true:auto hide, false:always show)
 	const constAutoHideMode = true; // edit this value
 
-	// [1] skip all iframe 
-	if ( window.self != window.top ) { return; };
-
 	// create element
 	function fncCreateElement( varNumber ) { return document.createElement( varNumber ); }; // end of function
 
@@ -289,6 +286,9 @@ function SetTopBottomButtons( ) {
 
 		return true;
 	}; // end of function
+
+	// skip all iframe 
+	if ( window.self != window.top ) { return; };
 
 	// run it
 	fncCreateButtonElement( );
