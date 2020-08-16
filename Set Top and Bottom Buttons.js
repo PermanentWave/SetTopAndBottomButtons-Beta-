@@ -3,7 +3,7 @@
 // @name:ja AdGuard 最上部/最下部 移動ボタン (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 1.12b2
+// @version 1.12b3
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @supportURL https://github.com/PermanentWave/SetTopAndBottomButtons/issues
@@ -272,7 +272,6 @@ function SetTopBottomButtons( ) {
 
 			// add event loading
 			window.addEventListener( 'load', fncRestartTimer, false );
-
 			// add event click up button
 			letUpButton.addEventListener( 'click', fncMoveUp, false );
 			letUpButton.addEventListener( 'click', function( ){ clearTimeout( letUpTimer ); }, false );
@@ -283,7 +282,6 @@ function SetTopBottomButtons( ) {
 			letDownButton.addEventListener( 'click', function( ){ letClickFlag = 1; }, false );
 			// add event click information button
 			letCheckButton.addEventListener( 'click', fncCheckHeight, false ); // beta version only
-
 			// add event scroll
 			window.addEventListener( 'scroll', fncRestartTimer, false );
 			window.addEventListener( 'scroll', fncOnScroll, false );
