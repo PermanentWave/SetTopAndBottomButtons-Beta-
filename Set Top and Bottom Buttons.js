@@ -160,7 +160,7 @@ function SetTopBottomButtons( ) {
 	function fncGetScroll( ) { return ( letElement.clientHeight < letElement.scrollHeight ); }; // end of function
 
 	// add css
-	function fncShareCSS( ){ 
+	function fncShareCSS( ) { 
 		// variables
 		let letString = '';
 		let letImgUp;
@@ -250,7 +250,7 @@ function SetTopBottomButtons( ) {
 		fncShareCSS( ); 
 		
 		// if loading element
-		if( letElement ){ 
+		if( letElement ) { 
 			// create DOM element
 			letUpButton = fncCreateElement( 'span' );
 			letDownButton = fncCreateElement( 'span' );
