@@ -3,7 +3,7 @@
 // @name:ja AdGuard 最上部/最下部 移動ボタン (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 1.12b1
+// @version 1.12b2
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @supportURL https://github.com/PermanentWave/SetTopAndBottomButtons/issues
