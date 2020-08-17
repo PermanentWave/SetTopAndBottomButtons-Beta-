@@ -6,7 +6,7 @@
 // @version 1.12b6
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
-// @updateURL https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/SetTopAndBottomButtons.user.js
+// @updateURL https://raw.githubusercontent.com/PermanentWave/SetTopAndBottomButtons-Beta-/master/SetTopAndBottomButtons.user.js
 // @supportURL https://github.com/PermanentWave/SetTopAndBottomButtons/issues
 // @license Copyright (c) 2020 PermanentWave Released under the MIT license https://github.com/PermanentWave/SetTopAndBottomButtons/blob/master/LICENSE
 // @include *
