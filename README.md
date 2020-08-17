@@ -7,7 +7,7 @@ This is beta version.
 https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/SetTopAndBottomButtons.user.js
 
 ## License
-MIT License
+MIT License  
 
 ## このプログラムについて
 ブラウザ上にページ最上部とページ最下部へ移動するボタンを追加します。  
@@ -18,4 +18,4 @@ AdGuard Pro (for Windows/Android)上にて拡張機能としてデバッグし�
 https://github.com/PermanentWave/SetTopAndBottomButtons-Beta-/raw/master/SetTopAndBottomButtons.user.js
 
 ## ライセンス
-MIT License
+MIT License  
