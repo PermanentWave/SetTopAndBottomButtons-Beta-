@@ -22,7 +22,6 @@ function SetTopBottomButtons( ) {
 	const constElement = fncSelectElement( );
 	// timer
 	let letIdleTimer;
-
 	// z-index (layer number)
 	const constZIndex = 1001; // edit this value
 	// y-position (%)
