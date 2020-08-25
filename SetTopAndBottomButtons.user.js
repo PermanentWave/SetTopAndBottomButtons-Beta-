@@ -208,6 +208,7 @@ function SetTopBottomButtons( ) {
 
 		// onscroll event
 		function fncOnScroll( ) {
+			// initialize buttons
 			fncVisibleButtons( );
 
 			// if click
