@@ -31,10 +31,6 @@ function SetTopBottomButtons( ) {
 	const constIdleTimeOut = 2000; // edit this value
 	// auto hide buttons (true:auto hide, false:always show)
 	const constAutoHideMode = true; // edit this value
-	// system value
-	const GO_TO_TOP = -1;
-	const GO_TO_BOTTOM = 1;
-	const NOT_WORKING = 0;
 
 	// create element
 	function fncCreateElement( varNumber ) { return document.createElement( varNumber ); }; // end of function
@@ -78,7 +74,7 @@ function SetTopBottomButtons( ) {
 
 	// move down
 	function fncMoveDown( ) { 
-		window.scrollTo( 0, fncScrollBottom( constElement ) );
+		window.scrollBy( 0, fncScrollBottom( constElement ) );
 
 		return true;
 	}; // end of function
@@ -173,7 +169,6 @@ function SetTopBottomButtons( ) {
 		let letDownButton;
 		let letCheckButton; // beta version only
 		let letScroll = fncGetScroll( );
-		let letClickFlag = NOT_WORKING;
 
 		// switch visible buttons
 		function fncVisibleButtons( ) {
@@ -202,23 +197,6 @@ function SetTopBottomButtons( ) {
 		function fncRestartTimer( ) {
 			clearTimeout( letIdleTimer );
 			letIdleTimer = setTimeout( fncInvisibleButtons, constIdleTimeOut );
-
-			return true;
-		}; // end function
-
-		// onscroll event
-		function fncOnScroll( ) {
-			// initialize buttons
-			fncVisibleButtons( );
-
-			// if click
-			if ( letClickFlag = GO_TO_TOP ) { // invisible top button if click top button
-				letUpButton.style.display = "none";
-				letClickFlag = NOT_WORKING;
-			} else if ( letClickFlag = GO_TO_BOTTOM ) { // invisible buttom button if click buttom button
-				letDownButton.style.display = "none";
-				letClickFlag = NOT_WORKING;
-			} // end if
 
 			return true;
 		}; // end function
@@ -255,15 +233,13 @@ function SetTopBottomButtons( ) {
 			window.addEventListener( 'load', fncRestartTimer, false );
 			// add event click up button
 			letUpButton.addEventListener( 'click', fncMoveUp, false );
-			letUpButton.addEventListener( 'click', function( ){ letClickFlag = GO_TO_TOP; }, false );
 			// add event click down button
 			letDownButton.addEventListener( 'click', fncMoveDown, false );
-			letDownButton.addEventListener( 'click', function( ){ letClickFlag = GO_TO_BOTTOM; }, false );
 			// add event click information button
 			letCheckButton.addEventListener( 'click', fncCheckHeight, false ); // beta version only
 			// add event scroll
 			window.addEventListener( 'scroll', fncRestartTimer, false );
-			window.addEventListener( 'scroll', fncOnScroll, false );
+			window.addEventListener( 'scroll', fncVisibleButtons, false );
 		} // end if
 
 		return true;
