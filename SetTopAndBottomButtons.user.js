@@ -132,8 +132,8 @@ function SetTopBottomButtons( ) {
 		return true;
 	}; // end of function
 
-	// document scroll
-	function fncGetScroll( ) { return ( LOADING_ELEMENT.clientHeight < LOADING_ELEMENT.scrollHeight ); }; // end of function
+	// compare height
+	function fncCompareHeight( ) { return ( LOADING_ELEMENT.clientHeight < LOADING_ELEMENT.scrollHeight ); }; // end of function
 
 	// add css
 	function fncShareCSS( ) {
@@ -197,7 +197,7 @@ function SetTopBottomButtons( ) {
 		}; // end function
 
 		// exit function
-		if( !fncGetScroll( ) ) { return; }; // end if
+		if( !fncCompareHeight( ) ) { return; }; // end if
 
 		// add css
 		fncShareCSS( ); 
