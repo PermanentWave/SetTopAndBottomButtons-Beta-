@@ -3,7 +3,7 @@
 // @name:ja AdGuard 最上部/最下部 移動ボタン (Beta)
 // @description Set Top and Bottom buttons on your browser (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 2.0b1
+// @version 2.0b2
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @updateURL https://raw.githubusercontent.com/PermanentWave/SetTopAndBottomButtons-Beta-/master/SetTopAndBottomButtons.user.js
@@ -18,18 +18,19 @@
 // package
 function SetTopBottomButtons( ) {
 
-	// load element
-	const constElement = fncSelectElement( );
 	// timer
 	let letIdleTimer;
+	// load element
+	const LOADING_ELEMENT = fncSelectElement( );
 	// z-index (layer number)
-	const constZIndex = 1001; // edit this value
+	const LAYER_INDEX = 1001; // edit this value
 	// y-position (%)
-	const constYPosition = 55; // edit this value
+	const Y_POSITION = 55; // edit this value
+	const Y_POSITION_OFFSET = 15; // edit this value
 	// idle timeout (milliseconds)
-	const constIdleTimeOut = 2000; // edit this value
+	const IDLE_TIME_OUT = 2000; // edit this value
 	// auto hide buttons (true:auto hide, false:always show)
-	const constAutoHideMode = true; // edit this value
+	const AUTO_HIDE_MODE = true; // edit this value
 
 	// create element
 	function fncCreateElement( varNumber ) { return document.createElement( varNumber ); }; // end of function
@@ -66,14 +67,14 @@ function SetTopBottomButtons( ) {
 
 	// move up
 	function fncMoveUp( ) { 
-		window.scrollBy( 0, -fncScrollTop( constElement ) );
+		window.scrollBy( 0, -fncScrollTop( LOADING_ELEMENT ) );
 
 		return true;
 	}; // end of function
 
 	// move down
 	function fncMoveDown( ) { 
-		window.scrollBy( 0, fncScrollBottom( constElement ) );
+		window.scrollBy( 0, fncScrollBottom( LOADING_ELEMENT ) );
 
 		return true;
 	}; // end of function
@@ -110,7 +111,6 @@ function SetTopBottomButtons( ) {
 		letAlert = letAlert + "scrollingElement.scrollHeight: " + document.scrollingElement.scrollHeight.toFixed(2) + "\n";
 		letAlert = letAlert + "scrollingElement.scrollTop: " + fncScrollTop( document.scrollingElement ).toFixed(2) + "\n";
 		letAlert = letAlert + "scrollingElement.clientHeight: " + document.scrollingElement.clientHeight.toFixed(2) + "\n";
-		letAlert = letAlert + "scrollingElement.clientTop: " + document.scrollingElement.clientTop.toFixed(2) + "\n";
 		letAlert = letAlert + "scrollingElement.scrollBottom: " + fncScrollBottom( document.scrollingElement ).toFixed(2) + "\n";
 		letAlert = letAlert + "\n";
 
@@ -118,7 +118,6 @@ function SetTopBottomButtons( ) {
 		letAlert = letAlert + "documentElement.scrollHeight: " + document.documentElement.scrollHeight.toFixed(2) + "\n";
 		letAlert = letAlert + "documentElement.scrollTop: " + fncScrollTop( document.documentElement ).toFixed(2) + "\n";
 		letAlert = letAlert + "documentElement.clientHeight: " + document.documentElement.clientHeight.toFixed(2) + "\n";
-		letAlert = letAlert + "documentElement.clientTop: " + document.documentElement.clientTop.toFixed(2) + "\n";
 		letAlert = letAlert + "documentElement.scrollBottom: " + fncScrollBottom( document.documentElement ).toFixed(2) + "\n";
 		letAlert = letAlert + "\n";
 
@@ -126,7 +125,6 @@ function SetTopBottomButtons( ) {
 		letAlert = letAlert + "body.scrollHeight: " + document.body.scrollHeight.toFixed(2) + "\n";
 		letAlert = letAlert + "body.scrollTop: " + fncScrollTop( document.body ).toFixed(2) + "\n";
 		letAlert = letAlert + "body.clientHeight: " + document.body.clientHeight.toFixed(2) + "\n";
-		letAlert = letAlert + "body.clientTop: " + document.body.clientTop.toFixed(2) + "\n";
 		letAlert = letAlert + "body.scrollBottom: " + fncScrollBottom( document.body ).toFixed(2) + "\n";
 
 		alert( letAlert );
@@ -135,11 +133,10 @@ function SetTopBottomButtons( ) {
 	}; // end of function
 
 	// document scroll
-	function fncGetScroll( ) { return ( constElement.clientHeight < constElement.scrollHeight ); }; // end of function
+	function fncGetScroll( ) { return ( LOADING_ELEMENT.clientHeight < LOADING_ELEMENT.scrollHeight ); }; // end of function
 
 	// add css
-	function fncShareCSS( ) { 
-		// variables
+	function fncShareCSS( ) {
 		let letString = '';
 		let letImgUp;
 		let letImgDown;
@@ -150,9 +147,9 @@ function SetTopBottomButtons( ) {
 		letImgDown = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAMAAAC3SZ14AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABCUExURUdwTKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj4ojpwAAAAWdFJOUwD0R6cGArz+DRVcdM6PNDXe6p7Pr5BnxQpHAAAAdklEQVQY03WQ2xKAIAhEKTXEtLTL//9qY6SJTfsiLsweBeArsvJuLRxeeHbfYB0m/Tp6GhaAEZUpjlE45tNhKNaJjosZZ1FkYuDmPf4QOeIOrcQMqkVp+pTq+BNBMVJPJGrQkige3X4DXmK7ACa2MkzsVknwrwutXwTWIXkOZgAAAABJRU5ErkJggg==';
 		letImgCheck = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABTSURBVDhPY/z//z8DNQATlKYYEDRo9erV/0EYysUJqOaiIRhGxAKsXsMWuKGhoYxQJlZAv8CGuY5uLho1iDAYfAYRnbJhAFd6ornX2PFgLICBAQBQciFGldEVwAAAAABJRU5ErkJggg=='; // beta version only
 		// button id
-		letString += '#play_btn_up { position:fixed; right:0; bottom:' + constYPosition + '%;z-index:' + constZIndex + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-		letString += '#play_btn_dn { position:fixed; right:0; top:' + constYPosition + '%;  z-index:' + constZIndex + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-		letString += '#play_btn_chk { position:fixed; right:0; top:' + ( constYPosition + 15 ) + '%;  z-index:' + constZIndex + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
+		letString += '#play_btn_up { position:fixed; right:0; bottom:' + Y_POSITION + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+		letString += '#play_btn_dn { position:fixed; right:0; top:' + Y_POSITION + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+		letString += '#play_btn_chk { position:fixed; right:0; top:' + ( Y_POSITION + Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
 		// button class
 		letString += '.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 		letString += '.play_btn:hover { opacity:1; }'; 
@@ -167,14 +164,13 @@ function SetTopBottomButtons( ) {
 		let letUpButton;
 		let letDownButton;
 		let letCheckButton; // beta version only
-		let letScroll = fncGetScroll( );
 
 		// switch visible buttons
 		function fncVisibleButtons( ) {
 			// if scroll up
-			letUpButton.style.display = ( fncScrollTop( constElement ) > 0 ) ? "" : "none";
+			letUpButton.style.display = ( fncScrollTop( LOADING_ELEMENT ) > 0 ) ? "" : "none";
 			// if scroll down
-			letDownButton.style.display = ( fncScrollBottom( constElement ) >= 1 ) ? "" : "none"; // remove digits after decimal point
+			letDownButton.style.display = ( fncScrollBottom( LOADING_ELEMENT ) >= 1 ) ? "" : "none"; // remove digits after decimal point
 			// always on
 			letCheckButton.style.display = ""; // beta version only
 
@@ -183,7 +179,7 @@ function SetTopBottomButtons( ) {
 
 		// switch invisible buttons
 		function fncInvisibleButtons( ) {
-			if ( constAutoHideMode ) {
+			if ( AUTO_HIDE_MODE ) {
 				letUpButton.style.display = "none";
 				letDownButton.style.display = "none";
 				letCheckButton.style.display = "none"; // beta version only
@@ -195,19 +191,19 @@ function SetTopBottomButtons( ) {
 		// reset timer
 		function fncRestartTimer( ) {
 			clearTimeout( letIdleTimer );
-			letIdleTimer = setTimeout( fncInvisibleButtons, constIdleTimeOut );
+			letIdleTimer = setTimeout( fncInvisibleButtons, IDLE_TIME_OUT );
 
 			return true;
 		}; // end function
 
 		// exit function
-		if( !letScroll ) { return; }; // end if
+		if( !fncGetScroll( ) ) { return; }; // end if
 
 		// add css
 		fncShareCSS( ); 
 		
 		// if loading element
-		if( constElement ) { 
+		if( LOADING_ELEMENT ) { 
 			// create DOM element
 			letUpButton = fncCreateElement( 'span' );
 			letDownButton = fncCreateElement( 'span' );
