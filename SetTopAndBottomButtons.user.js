@@ -20,7 +20,7 @@ function SetTopBottomButtons( ) {
 
 	// timer
 	let letIdleTimer;
-	// loaded element
+	// load element
 	const LOAD_ELEMENT = fncSelectElement( );
 	// layer index (number)
 	const LAYER_INDEX = 1001; // edit this value
