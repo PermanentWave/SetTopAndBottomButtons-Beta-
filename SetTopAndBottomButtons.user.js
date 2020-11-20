@@ -3,7 +3,7 @@
 // @name:ja 最上部/最下部 移動ボタン追加 (Beta)
 // @description Set buttons to jump to top and bottom on the Web page. The primary use is userscript extension for AdGuard. (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 2.1b3
+// @version 2.1b4
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @updateURL https://raw.githubusercontent.com/PermanentWave/SetTopAndBottomButtons-Beta-/master/SetTopAndBottomButtons.user.js
@@ -60,7 +60,7 @@ function SetTopBottomButtons( ) {
 
 	// select righty/lefty
 	function fncXPosition( ) {
-		if ( LEFTY_MODE = true ) {
+		if ( LEFTY_MODE ) {
 			return 'left';
 		} else {
 			return 'right';
