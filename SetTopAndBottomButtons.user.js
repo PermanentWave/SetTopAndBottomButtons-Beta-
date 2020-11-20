@@ -3,7 +3,7 @@
 // @name:ja 最上部/最下部 移動ボタン追加 (Beta)
 // @description Set buttons to jump to top and bottom on the Web page. The primary use is userscript extension for AdGuard. (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 2.1b2
+// @version 2.1b3
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @updateURL https://raw.githubusercontent.com/PermanentWave/SetTopAndBottomButtons-Beta-/master/SetTopAndBottomButtons.user.js
@@ -61,9 +61,9 @@ function SetTopBottomButtons( ) {
 	// select righty/lefty
 	function fncXPosition( ) {
 		if ( LEFTY_MODE = true ) {
-			return "left";
+			return 'left';
 		} else {
-			return "right";
+			return 'right';
 		} // end if
 	}; // end function
 
@@ -92,9 +92,9 @@ function SetTopBottomButtons( ) {
 		letImgDown = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUBAMAAAByuXB5AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURUdwTKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqu6rUBMAAAALdFJOUwAQ/j2n1PG8j1x0dBa5ZQAAAGhJREFUCNdjYIADQTjtKgBmMIYwmBWAWezJDMwqYJaTAQPDpAYgg0MTSHBpAYlFC0B6miYwcGqA9bIoMxg5QPSWGadD9YqmBUL1MoYKwPQKgvUyQPWCAFgvxBkgvRAA0gsBQL3oroUCAIEJErtmb0XIAAAAAElFTkSuQmCC';
 		letImgCheck = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABTSURBVDhPY/z//z8DNQATlKYYEDRo9erV/0EYysUJqOaiIRhGxAKsXsMWuKGhoYxQJlZAv8CGuY5uLho1iDAYfAYRnbJhAFd6ornX2PFgLICBAQBQciFGldEVwAAAAABJRU5ErkJggg=='; // beta version only
 		// button id
-		letString += '#play_btn_up { position:fixed; '+ X_POSITION +':0; bottom:' + ( Y_POSITION - Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-		letString += '#play_btn_dn { position:fixed; '+ X_POSITION +':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-		letString += '#play_btn_chk { position:fixed; '+ X_POSITION +':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET + 15 ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
+		letString += '#play_btn_up { position:fixed; ' + X_POSITION + ':0; bottom:' + ( Y_POSITION - Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+		letString += '#play_btn_dn { position:fixed; ' + X_POSITION + ':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
+		letString += '#play_btn_chk { position:fixed; ' + X_POSITION + ':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET + 15 ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
 		// button class
 		letString += '.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 		letString += '.play_btn:hover { opacity:1; }'; 
