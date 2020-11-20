@@ -3,7 +3,7 @@
 // @name:ja 最上部/最下部 移動ボタン追加 (Beta)
 // @description Set buttons to jump to top and bottom on the Web page. The primary use is userscript extension for AdGuard. (Beta)
 // @description:ja 最上部/最下部へ移動するボタンをブラウザ上に追加します (Beta)
-// @version 2.1b4
+// @version 2.1b6
 // @author PermanentWave
 // @homepageURL https://github.com/PermanentWave/SetTopAndBottomButtons
 // @updateURL https://raw.githubusercontent.com/PermanentWave/SetTopAndBottomButtons-Beta-/master/SetTopAndBottomButtons.user.js
@@ -22,15 +22,13 @@ function SetTopBottomButtons( ) {
 	let letIdleTimer;
 	// load element
 	const LOAD_ELEMENT = fncSelectElement( );
-	// x-position
-	const X_POSITION = fncXPosition( );
 	// y-position (%)	
 	const Y_POSITION = 55;
 
 	// layer index (number) // edit this value
 	const LAYER_INDEX = 1001;
 	// y-position offset(%) // edit this value	
-	const Y_POSITION_OFFSET = 15; // only beta version
+	const Y_POSITION_OFFSET = 0; // only beta version
 	// idle timeout (milliseconds) // edit this value
 	const IDLE_TIMEOUT = 2000;
 	// auto hide buttons (true:auto hide, false:always show) // edit this value
@@ -58,15 +56,6 @@ function SetTopBottomButtons( ) {
 		} // end if
 	}; // end function
 
-	// select righty/lefty
-	function fncXPosition( ) {
-		if ( LEFTY_MODE ) {
-			return 'left';
-		} else {
-			return 'right';
-		} // end if
-	}; // end function
-
 	// add style
 	function fncAddStyle( varCSS ) {
 		let letElement = document.head || document.getElementsByTagName( 'head' )[0];
@@ -86,15 +75,25 @@ function SetTopBottomButtons( ) {
 		let letImgUp;
 		let letImgDown;
 		let letImgCheck; // beta version only
+		let letXPosition;
+		let letButtonsRound;
 
+		if ( LEFTY_MODE ) {
+			letXPosition = 'left';
+			letButtonsRound = '0 5px 5px 0';
+		} else {
+			letXPosition = 'right';
+			letButtonsRound = '5px 0 0 5px';
+		} // end if
+	
 		// img vs button
 		letImgUp = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAMAAAC3SZ14AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAkUExURaqqqqqqqkdwTKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjfXEQEAAAAMdFJOU/wPAKSPdF28R8805OPAZQgAAABpSURBVBjTZZBbDgAhCANbfOv977urBJ/9sRkIkwh5AivkjdgaT8TSWuGBEmpF2pFDFslwC3nE/kR4QwFBjaN0NIZqHOvQE2bsR6GiafwLnA1t3YE8jeQ0itxGzW60bMaZaVwx48GI96M/9sgD7Y3Hro8AAAAASUVORK5CYII=';
 		letImgDown = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUBAMAAAByuXB5AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURUdwTKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqu6rUBMAAAALdFJOUwAQ/j2n1PG8j1x0dBa5ZQAAAGhJREFUCNdjYIADQTjtKgBmMIYwmBWAWezJDMwqYJaTAQPDpAYgg0MTSHBpAYlFC0B6miYwcGqA9bIoMxg5QPSWGadD9YqmBUL1MoYKwPQKgvUyQPWCAFgvxBkgvRAA0gsBQL3oroUCAIEJErtmb0XIAAAAAElFTkSuQmCC';
 		letImgCheck = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAUCAYAAACAl21KAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAABTSURBVDhPY/z//z8DNQATlKYYEDRo9erV/0EYysUJqOaiIRhGxAKsXsMWuKGhoYxQJlZAv8CGuY5uLho1iDAYfAYRnbJhAFd6ornX2PFgLICBAQBQciFGldEVwAAAAABJRU5ErkJggg=='; // beta version only
 		// button id
-		letString += '#play_btn_up { position:fixed; ' + X_POSITION + ':0; bottom:' + ( Y_POSITION - Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-		letString += '#play_btn_dn { position:fixed; ' + X_POSITION + ':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; 
-		letString += '#play_btn_chk { position:fixed; ' + X_POSITION + ':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET + 15 ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:5px 0 0 5px; margin-top:-24px; }'; // beta version only
+		letString += '#play_btn_up { position:fixed; ' + letXPosition + ':0; bottom:' + ( Y_POSITION - Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgUp + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:' + letButtonsRound + '; margin-top:-24px; }'; 
+		letString += '#play_btn_dn { position:fixed; ' + letXPosition + ':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgDown + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:' + letButtonsRound + '; margin-top:-24px; }'; 
+		letString += '#play_btn_chk { position:fixed; ' + letXPosition + ':0; top:' + ( Y_POSITION + Y_POSITION_OFFSET + 15 ) + '%; z-index:' + LAYER_INDEX + '; height:36px; width:36px; cursor:pointer; background:url(' + letImgCheck + ') no-repeat scroll 50% 50% rgba( 0, 0, 0, 0.7 ); border-radius:' + letButtonsRound + '; margin-top:-24px; }'; // beta version only		
 		// button class
 		letString += '.play_btn { -webkit-transition-duration:0.5s linear; -o-transition-duration:0.5s linear; -moz-transition-duration:0.5s linear; transition-duration:0.5s linear; opacity:0.65; }'; 
 		letString += '.play_btn:hover { opacity:1; }'; 
