@@ -36,7 +36,7 @@ function SetTopBottomButtons( ) {
 	// auto hide buttons (true:auto hide, false:always show) // edit this value
 	const AUTO_HIDE_MODE = true;
 	// lefty mode (true:for lefty, false:for righty) // edit this value
-	const LEFTY_MODE = true;
+	const LEFTY_MODE = false;
 
 	// create element
 	function fncCreateElement( varNumber ) { return document.createElement( varNumber ); }; // end function
